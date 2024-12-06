@@ -1,7 +1,7 @@
-import React, {useEffect, useRef} from 'react';
-import {View, Animated, StyleSheet} from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
-import {theme} from '../../theme/main.theme';
+import React, { useEffect, useRef } from "react";
+import { View, Animated, StyleSheet } from "react-native";
+import SplashScreen from "react-native-splash-screen";
+import { theme } from "../../theme/main.theme";
 
 const AppSplashScreen = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -35,13 +35,13 @@ const AppSplashScreen = () => {
   return (
     <View style={styles.container}>
       <Animated.Image
-        source={require('../../assets/img/ic_launcher_xxxhdpi_squircle.png')}
+        source={require("../../assets/img/ic_launcher.png")}
         style={[
           styles.icon,
-          {opacity: fadeAnim, transform: [{scale: scaleAnim}]},
+          { opacity: fadeAnim, transform: [{ scale: scaleAnim }] },
         ]}
       />
-      <Animated.Text style={[styles.text, {opacity: textFadeAnim}]}>
+      <Animated.Text style={[styles.text, { opacity: textFadeAnim }]}>
         Close To You
       </Animated.Text>
     </View>
@@ -51,8 +51,8 @@ const AppSplashScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: theme.colors.background, // use your theme's background color
   },
   icon: {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: theme.fontSizes.title, // or theme's font size for title
     color: theme.colors.textPrimary, // theme's text color
-    textAlign: 'center',
+    textAlign: "center",
   },
 });
 
