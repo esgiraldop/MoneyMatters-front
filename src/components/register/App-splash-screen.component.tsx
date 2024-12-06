@@ -42,7 +42,7 @@ const AppSplashScreen = () => {
         ]}
       />
       <Animated.Text style={[styles.text, { opacity: textFadeAnim }]}>
-        Close To You
+        Money Matters
       </Animated.Text>
     </View>
   );

@@ -1,28 +1,28 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {SectionList, Text, View} from 'react-native';
-import {GoToContacDetailsButton} from '../components/allContacts';
-import {ContactsService} from '../services/contacts.service';
-import {IContact} from '../interfaces/contact.interface';
-import {useFocusEffect} from '@react-navigation/native';
-import {PermissionEnum} from '../interfaces/permissions.interface';
-import {checkPermission} from '../utilities/check-permissions.utility';
-import {NotifyUserPermissionModal} from '../components/common/notifyUserPermissionModal.component';
+import React, { useCallback, useEffect, useState } from "react";
+import { SectionList, Text, View } from "react-native";
+import { GoToContacDetailsButton } from "../components/allContacts";
+import { ContactsService } from "../services/contacts.service";
+import { IContact } from "../interfaces/contact.interface";
+import { useFocusEffect } from "@react-navigation/native";
+import { PermissionEnum } from "../interfaces/permissions.interface";
+import { checkPermission } from "../utilities/check-permissions.utility";
+import { NotifyUserPermissionModal } from "../components/common/notifyUserPermissionModal.component";
 import {
   getContactsToSync,
   postNewContacts,
-} from '../utilities/check-contacts-to-sync.utility';
-import {ConfirmationModal} from '../components/common/confirmation-modal.component';
-import {Contact} from 'react-native-contacts/type';
-import {useSyncContext} from '../contexts/contacts-syncronization.context';
-import {isNull} from '../utilities/checkIsNull.utility';
-import {textStyles} from '../styles/text.styles';
-import {containerStyles} from '../styles/container.styles';
-import {IconButton} from '../components/common/IconButton';
-import Icon from 'react-native-vector-icons/Ionicons';
-import {theme} from '../theme/main.theme';
-import {SearchBar} from '@rneui/themed';
-import {groupBy} from 'lodash';
-import {Loader} from '../components';
+} from "../utilities/check-contacts-to-sync.utility";
+import { ConfirmationModal } from "../components/common/confirmation-modal.component";
+import { Contact } from "react-native-contacts/type";
+import { useSyncContext } from "../contexts/contacts-syncronization.context";
+import { isNull } from "../utilities/checkIsNull.utility";
+import { textStyles } from "../styles/text.styles";
+import { containerStyles } from "../styles/container.styles";
+import { IconButton } from "../components/common/IconButton";
+import Icon from "react-native-vector-icons/Ionicons";
+import { theme } from "../theme/main.theme";
+import { SearchBar } from "@rneui/themed";
+import { groupBy } from "lodash";
+import { Loader } from "../components";
 
 export function AllContactsScreen(): React.JSX.Element {
   const [contacts, setContacts] = useState<IContact[]>([]);
@@ -38,7 +38,7 @@ export function AllContactsScreen(): React.JSX.Element {
     setHasUserResponded,
   } = useSyncContext();
   const [contacts2Sync, setcontacts2Sync] = useState<Contact[] | null>(null);
-  const [filterByName, setFilterByName] = useState<string>('');
+  const [filterByName, setFilterByName] = useState<string>("");
 
   useEffect(() => {
     const syncContacts = async () => {
@@ -48,10 +48,10 @@ export function AllContactsScreen(): React.JSX.Element {
         //If app's contacts could be loaded, ask permission for reading phone's contacts and numbers
 
         const contactsPermissionResponse = await checkPermission(
-          PermissionEnum.READ_CONTACTS,
+          PermissionEnum.READ_CONTACTS
         );
         const cellphonesPermissionResponse = await checkPermission(
-          PermissionEnum.READ_PHONE_NUMBERS,
+          PermissionEnum.READ_PHONE_NUMBERS
         );
 
         if (contactsPermissionResponse && cellphonesPermissionResponse) {
@@ -61,7 +61,7 @@ export function AllContactsScreen(): React.JSX.Element {
           if (phoneContactsResponse) {
             const contactsToSync = getContactsToSync(
               response.data,
-              phoneContactsResponse,
+              phoneContactsResponse
             );
 
             // Call modal for asking user to sync contacts. If the modal was already called this is never executed unless the user closes the app and opens it again
@@ -103,7 +103,7 @@ export function AllContactsScreen(): React.JSX.Element {
         insertResponse.data.length !== askUserSyncModalOpen.numNewContacts
       ) {
         console.log(
-          'The number of contacts inserted in the database and the number contacts to be syncronized are not the same, so probably there was an error',
+          "The number of contacts inserted in the database and the number contacts to be syncronized are not the same, so probably there was an error"
         );
       }
       const params: Record<string, string> = {};
@@ -140,12 +140,12 @@ export function AllContactsScreen(): React.JSX.Element {
       fetchAllContacts();
 
       return () => {};
-    }, [filterByName]),
+    }, [filterByName])
   );
 
   const groupedContacts = useCallback(() => {
-    const grouped = groupBy(filteredContacts, contact =>
-      contact.name.charAt(0).toUpperCase(),
+    const grouped = groupBy(filteredContacts, (contact) =>
+      contact.name.charAt(0).toUpperCase()
     );
 
     return Object.entries(grouped)
@@ -158,11 +158,11 @@ export function AllContactsScreen(): React.JSX.Element {
 
   const handleSearch = (text: string) => {
     setFilterByName(text);
-    if (text.trim() === '') {
+    if (text.trim() === "") {
       setFilteredContacts(contacts);
     } else {
-      const filtered = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(text.toLowerCase()),
+      const filtered = contacts.filter((contact) =>
+        contact.name.toLowerCase().includes(text.toLowerCase())
       );
       setFilteredContacts(filtered);
     }
@@ -179,7 +179,7 @@ export function AllContactsScreen(): React.JSX.Element {
               color={theme.colors.textPrimary}
             />
           </IconButton>
-          <View style={{flex: 1, paddingLeft: 10}}>
+          <View style={{ flex: 1, paddingLeft: 10 }}>
             <SearchBar
               containerStyle={containerStyles.searchBarContainer}
               inputContainerStyle={containerStyles.searchBarInputContainer}
@@ -199,15 +199,15 @@ export function AllContactsScreen(): React.JSX.Element {
           <>
             <SectionList
               sections={groupedContacts()}
-              keyExtractor={item => item.id}
-              renderItem={({item}) => (
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
                 <GoToContacDetailsButton
                   name={item.name}
                   id={item.id}
                   imageUri={item.imageUri}
                 />
               )}
-              renderSectionHeader={({section: {title}}) => (
+              renderSectionHeader={({ section: { title } }) => (
                 <Text style={textStyles.sectionHeader}>{title}</Text>
               )}
             />
@@ -218,7 +218,7 @@ export function AllContactsScreen(): React.JSX.Element {
             modalOpen={permissionModalOpen}
             setModalopen={setPermissionModalopen}
             message={
-              "Please enable the app permissions from the settings to be able to syncronize the phone's contacts with Close To You app"
+              "Please enable the app permissions from the settings to be able to syncronize the phone's contacts with Money Matters app"
             }
           />
         )}
@@ -228,7 +228,8 @@ export function AllContactsScreen(): React.JSX.Element {
             setConfirmationModalVisible={setAskUserSyncModalOpen}
             handleAccept={handleSyncContacts}
             requiresCancel={true}
-            handleCancel={() => setHasUserResponded(true)}>
+            handleCancel={() => setHasUserResponded(true)}
+          >
             <Text>
               {askUserSyncModalOpen.numNewContacts} new contacts have been
               found. Do you want to syncronize them? (Only 10 contacts will be
