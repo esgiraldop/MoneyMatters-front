@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {Button, ScrollView, Text, useColorScheme, View} from 'react-native';
 import {
   Colors,
   DebugInstructions,
@@ -18,7 +12,6 @@ import {styles} from '../styles/general.style';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../interfaces';
-import {modalStyles} from '../components/common/addPictureModal.component';
 
 type DemoScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -58,11 +51,10 @@ export function DemoScreen(): React.JSX.Element {
           <Section title="Learn More">
             Read the docs to discover what to do next:
           </Section>
-          <TouchableOpacity
-            style={modalStyles.button}
-            onPress={() => navigation.navigate('AnotherScreen')}>
-            <Text>Go to App's Home</Text>
-          </TouchableOpacity>
+          <Button
+            title="Go to App's Home"
+            onPress={() => navigation.navigate('Home')}
+          />
           <LearnMoreLinks />
         </View>
       </ScrollView>

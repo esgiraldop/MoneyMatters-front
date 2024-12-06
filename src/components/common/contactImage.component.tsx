@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
-import {StyleSheet, useColorScheme, View} from 'react-native';
+import {View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {imageStyles} from '../../styles/image.styles';
+import {containerStyles} from '../../styles/container.styles';
+import {theme} from '../../theme/main.theme';
 
 interface IContactImage {
   pictureUri?: string | undefined;
@@ -13,22 +16,22 @@ export default function ContactImage({
   size = undefined,
 }: IContactImage) {
   const [imageError, setImageError] = useState<boolean>(false);
-  const isDarkMode = useColorScheme() === 'dark'; // TODO: Maybe define this in the main app theme?
+  // const isDarkMode = useColorScheme() === 'dark'; // TODO: To use this in the future for light and dark versions
   return (
-    <View style={styles.container}>
+    <View style={containerStyles.complexButtonContainer}>
       {imageError || !pictureUri ? (
         <Icon
           name="person-circle"
-          size={size ? size : styles.image.width}
-          color={!isDarkMode ? 'grey' : 'white'}
+          size={size ? size : imageStyles.image.width}
+          color={theme.colors.textPrimary}
         />
       ) : (
         <FastImage
           style={{
-            ...styles.image,
-            width: size ? size : styles.image.width,
-            height: size ? size : styles.image.height,
-            borderRadius: size ? size : styles.image.borderRadius,
+            ...imageStyles.image,
+            width: size ? size : imageStyles.image.width,
+            height: size ? size : imageStyles.image.height,
+            borderRadius: size ? size : imageStyles.image.borderRadius,
           }}
           source={{
             uri: pictureUri,
@@ -41,25 +44,3 @@ export default function ContactImage({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    borderColor: '#ccc', // Optional border
-    borderWidth: 1, // Optional border
-  },
-  icon: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: '#f0f0f0', // Optional background color for icon
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

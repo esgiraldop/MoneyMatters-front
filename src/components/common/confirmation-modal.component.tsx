@@ -1,9 +1,13 @@
 import React from 'react';
-import {Modal, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Modal, TouchableOpacity, View} from 'react-native';
 import {Text} from 'react-native-elements';
-import {theme} from '../../theme/main.theme';
 import {IAskUserSyncModalOpen} from '../../contexts/contacts-syncronization.context';
 import {isNull} from '../../utilities/checkIsNull.utility';
+import {modalStyles} from '../../styles/modal.styles';
+import {buttonStyle} from '../../styles/buttons.style';
+import {textStyles} from '../../styles/text.styles';
+import {containerStyles} from '../../styles/container.styles';
+import {theme} from '../../theme/main.theme';
 
 interface IConfirmationModal<T> {
   children: React.ReactNode;
@@ -12,6 +16,7 @@ interface IConfirmationModal<T> {
   handleAccept: () => void;
   requiresCancel: boolean;
   handleCancel?: () => void;
+  isSubmitting?: boolean | null;
 }
 
 // Type guard to check if T is IAskUserSyncModalOpen
@@ -34,6 +39,7 @@ export const ConfirmationModal = <T,>({
   handleAccept,
   requiresCancel,
   handleCancel = () => null,
+  isSubmitting,
 }: IConfirmationModal<T>): React.JSX.Element => {
   const evalConfirmationModalVisible = (): boolean => {
     if (typeof confirmationModalVisible === 'boolean') {
@@ -46,11 +52,6 @@ export const ConfirmationModal = <T,>({
     } else {
       return false;
     }
-    // return typeof confirmationModalVisible === 'boolean'
-    //   ? confirmationModalVisible
-    //   : isAskUserSyncModalOpen(confirmationModalVisible)
-    //   ? confirmationModalVisible.isModalOpen
-    //   : false;
   };
   const handleClose = () => {
     handleCancel();
@@ -70,66 +71,32 @@ export const ConfirmationModal = <T,>({
       transparent={true}
       visible={evalConfirmationModalVisible()}
       onRequestClose={handleClose}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>{children}</Text>
-          <TouchableOpacity
-            style={[styles.button, styles.acceptButton]}
-            onPress={handleAccept}>
-            <Text style={styles.buttonText}>Accept</Text>
-          </TouchableOpacity>
-          {requiresCancel && (
+      <View style={modalStyles.centeredView}>
+        <View style={modalStyles.modalView}>
+          <Text style={textStyles.modalText}>{children}</Text>
+          <View style={containerStyles.complexButtonContainerLight}>
             <TouchableOpacity
-              style={[styles.button, styles.cancelButton]}
-              onPress={handleClose}>
-              <Text style={styles.buttonText}>Cancel</Text>
+              style={buttonStyle.button5}
+              onPress={handleAccept}>
+              {isSubmitting ? (
+                <ActivityIndicator
+                  size="large"
+                  color={theme.colors.textPrimary}
+                />
+              ) : (
+                <Text style={textStyles.buttonText}>Accept</Text>
+              )}
             </TouchableOpacity>
-          )}
+            {requiresCancel && (
+              <TouchableOpacity
+                style={buttonStyle.button5}
+                onPress={handleClose}>
+                <Text style={textStyles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
       </View>
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: theme.colors.background,
-    borderRadius: theme.spacing.small,
-    padding: theme.spacing.large,
-    alignItems: 'center',
-    shadowColor: theme.colors.textPrimary,
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: theme.spacing.small,
-    padding: theme.spacing.medium,
-    elevation: 2,
-  },
-  acceptButton: {
-    backgroundColor: theme.colors.accent,
-    marginTop: theme.spacing.small,
-  },
-  cancelButton: {
-    backgroundColor: theme.colors.buttonBackground,
-    marginTop: theme.spacing.small,
-  },
-  buttonText: {
-    color: theme.colors.textPrimary,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.text,
-    textAlign: 'center',
-  },
-});
