@@ -1,13 +1,17 @@
-import {ParamListBase} from '@react-navigation/native';
+import { ParamListBase } from "@react-navigation/native";
 
 export interface RootStackParamList extends ParamListBase {
-  Demo: undefined;
+  // Public screens
   Register: undefined;
-  Login?: {setIsAuthenticated: (isAuthenticated: boolean) => void};
-  Contacts: undefined;
-  ContactDetails: {contactId: string};
-  AddContact: undefined;
-  EditContact: {
-    contactId: number;
-  };
+  Login?: { setIsAuthenticated: (isAuthenticated: boolean) => void };
+  RecoverPassword: undefined;
+  // Priavate screens
+  Transactions: undefined;
+  TransactionDetails: { transactionId: string };
+  TransactionsSummary: undefined;
+  CreateTransaction: undefined;
+  EditTransaction: { transactionId: string };
+  CreateBudget: undefined;
+  BudgetDetails: { budgetId: string };
+  EditBudget: { budgetId: string };
 }

@@ -12,7 +12,7 @@ import { StackNavigator } from "./src/components/common/stack-navigator.componen
 
 function App(): React.JSX.Element {
   const [showSplash, setShowSplash] = useState(true);
-  const isDarkMode = useColorScheme() === "dark"; // TODO: Maybe define this in the main app theme?
+  const isDarkMode = useColorScheme() === "dark";
   // const {isAuthenticated, setIsAuthenticated, isLoadingAuth} = useAuth(); // This didn't work
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const backgroundStyle = {
@@ -23,7 +23,7 @@ function App(): React.JSX.Element {
     // Set a timer to transition to the main app
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 2000); // splash duration
+    }, 4000);
     return () => clearTimeout(timer);
   }, []);
 
