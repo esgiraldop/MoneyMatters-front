@@ -1,5 +1,6 @@
 import React from "react";
+import { Text } from "react-native-elements";
 
 export const TransactionsSummaryScreen = () => {
-  return <h1>This is the page for the transactions summary</h1>;
+  return <Text>This is the page for the transactions summary</Text>;
 };

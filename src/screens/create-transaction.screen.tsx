@@ -1,5 +1,6 @@
 import React from "react";
+import { Text } from "react-native-elements";
 
 export const CreateTransactionScreen = () => {
-  return <h1>This is the screen for creating a transaction</h1>;
+  return <Text>This is the screen for creating a transaction</Text>;
 };

@@ -1,5 +1,6 @@
 import React from "react";
+import { Text } from "react-native-elements";
 
 export const RecoverPasswordScreen = () => {
-  return <h1>This is the page for recovering password</h1>;
+  return <Text>This is the page for recovering password</Text>;
 };

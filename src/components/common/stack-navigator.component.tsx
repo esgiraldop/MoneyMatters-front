@@ -5,7 +5,6 @@ import { isNull } from "lodash";
 import { theme } from "../../theme/main.theme";
 import { RegistrationScreen } from "../../screens/register.screen";
 import LoginScreen from "../../screens/login.screen";
-import { AllContactsScreen } from "../../screens";
 import { RecoverPasswordScreen } from "../../screens/recover-password.screen";
 import { AllTransactionsScreen } from "../../screens/all-transactions.screen";
 import { TransactionDetailsScreen } from "../../screens/transaction-details.screen";
@@ -30,7 +29,9 @@ export const StackNavigator = ({
   return (
     <Stack.Navigator
       initialRouteName={
-        !isAuthenticated && isNull(isAuthenticated) ? "Register" : "Contacts"
+        !isAuthenticated && isNull(isAuthenticated)
+          ? "Register"
+          : "Transactions"
       }
       screenOptions={{
         headerStyle: {

@@ -1,5 +1,6 @@
 import React from "react";
+import { Text } from "react-native-elements";
 
 export const EditBudgetScreen = () => {
-  return <h1>This is the screen for editing a budget</h1>;
+  return <Text>This is the screen for editing a budget</Text>;
 };

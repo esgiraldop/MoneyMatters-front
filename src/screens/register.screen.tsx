@@ -112,12 +112,12 @@ export function RegistrationScreen(): React.JSX.Element {
                 )}
               </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-              <Text style={textStyles.phoneText}>
-                Do you already have an account?{"  "}
+            <Text style={textStyles.phoneText}>
+              Do you already have an account?{"  "}
+              <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                 <Text style={textStyles.linkText}>Sign in</Text>
-              </Text>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </Text>
           </View>
         )}
       </Formik>
