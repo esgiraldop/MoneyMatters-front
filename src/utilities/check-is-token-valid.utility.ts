@@ -1,9 +1,9 @@
-import {jwtDecode} from 'jwt-decode';
-import {getAsyncStorageValue} from './get-async-storage-contents.utility';
+import { jwtDecode } from "jwt-decode";
+import { getAsyncStorageValue } from "./get-async-storage-contents.utility";
 
 export const isTokenValid = async (): Promise<boolean> => {
   try {
-    const token = await getAsyncStorageValue('token'); // Retrieve token from AsyncStorage
+    const token = await getAsyncStorageValue("token"); // Retrieve token from AsyncStorage
     if (!token) {
       return false;
     }
@@ -17,7 +17,6 @@ export const isTokenValid = async (): Promise<boolean> => {
       return false;
     }
   } catch (error) {
-    console.error('Error validating token:', error);
     return false;
   }
 };

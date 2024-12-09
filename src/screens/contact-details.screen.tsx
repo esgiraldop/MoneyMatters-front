@@ -1,40 +1,40 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Text,
   TouchableOpacity,
   View,
   StyleSheet,
   ScrollView,
-} from 'react-native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../interfaces';
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import ContactImage from '../components/common/contactImage.component';
-import {useContactById} from '../hooks/useContactById.hook';
-import {ContactsService} from '../services/contacts.service';
-import {ConfirmationModal} from '../components/common/confirmation-modal.component';
-import {theme} from '../theme/main.theme';
+} from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../interfaces";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import ContactImage from "../components/common/contactImage.component";
+import { useContactById } from "../hooks/useContactById.hook";
+import { ContactsService } from "../services/transactions.service";
+import { ConfirmationModal } from "../components/common/confirmation-modal.component";
+import { theme } from "../theme/main.theme";
 import {
   GoogleMap,
   IMarkerCoordinates,
-} from '../components/common/googleMap.component';
-import WeatherCard from '../components/common/weatherCard.component';
-import {textStyles} from '../styles/text.styles';
-import {buttonStyle} from '../styles/buttons.style';
-import {containerStyles} from '../styles/container.styles';
-import {Loader} from '../components';
+} from "../components/common/googleMap.component";
+import WeatherCard from "../components/common/weatherCard.component";
+import { textStyles } from "../styles/text.styles";
+import { buttonStyle } from "../styles/buttons.style";
+import { containerStyles } from "../styles/container.styles";
+import { Loader } from "../components";
 
 type ContactDetailsScreenProp = NativeStackNavigationProp<
   RootStackParamList,
-  'EditContact'
+  "EditContact"
 >;
 
 export function ContactDetailsScreen(): React.JSX.Element {
-  const {params} = useRoute<RouteProp<RootStackParamList, 'EditContact'>>();
+  const { params } = useRoute<RouteProp<RootStackParamList, "EditContact">>();
   const contactId = params.contactId;
   const navigation = useNavigation<ContactDetailsScreenProp>();
   const [isDeleting, setIsDeleting] = useState<boolean | null>(null);
-  const {contactInfo, isContactLoading, errorLoadingContact} =
+  const { contactInfo, isContactLoading, errorLoadingContact } =
     useContactById(contactId);
   const [confirmationModalVisible, setConfirmationModalVisible] =
     useState<boolean>(false);
@@ -83,13 +83,17 @@ export function ContactDetailsScreen(): React.JSX.Element {
             <View style={containerStyles.complexButtonContainer}>
               <TouchableOpacity
                 style={buttonStyle.button5}
-                onPress={() => navigation.navigate('EditContact', {contactId})}>
+                onPress={() =>
+                  navigation.navigate("EditContact", { contactId })
+                }
+              >
                 <Text style={textStyles.buttonText}>Edit Contact</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={buttonStyle.button5}
-                onPress={() => setConfirmationModalVisible(true)}>
+                onPress={() => setConfirmationModalVisible(true)}
+              >
                 <Text style={textStyles.buttonText}>Delete Contact</Text>
               </TouchableOpacity>
             </View>
@@ -99,7 +103,8 @@ export function ContactDetailsScreen(): React.JSX.Element {
               setConfirmationModalVisible={setConfirmationModalVisible}
               handleAccept={handleDeleteContact}
               requiresCancel={true}
-              isSubmitting={isDeleting}>
+              isSubmitting={isDeleting}
+            >
               <Text>Do you want to delete this contact?</Text>
             </ConfirmationModal>
           </View>
@@ -111,7 +116,7 @@ export function ContactDetailsScreen(): React.JSX.Element {
 
 export const contactDetailsStyles = StyleSheet.create({
   contactContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     borderBottomColor: theme.colors.borderColor,
     borderBottomWidth: 1,
     paddingBottom: theme.spacing.large,

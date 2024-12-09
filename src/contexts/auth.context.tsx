@@ -1,7 +1,7 @@
-import React, {createContext, useState, useContext, useEffect} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {setValueAsyncStorage} from '../utilities/set-variable-async-storage.utility';
-import {getAsyncStorageValue} from '../utilities/get-async-storage-contents.utility';
+import React, { createContext, useState, useContext, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setValueAsyncStorage } from "../utilities/set-variable-async-storage.utility";
+import { getAsyncStorageValue } from "../utilities/get-async-storage-contents.utility";
 
 interface AuthContextProps {
   isAuthenticated: boolean | null;
@@ -19,7 +19,7 @@ const AuthContext = createContext<AuthContextProps>({
   logout: async () => {},
 });
 
-export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -27,24 +27,23 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
 
   useEffect(() => {
     const checkToken = async () => {
-      const token = await getAsyncStorageValue('token');
+      const token = await getAsyncStorageValue("token");
       if (token) setIsAuthenticated(true);
       setIsLoadingAuth(false);
     };
-    console.log('isAuthenticated: ', isAuthenticated);
     checkToken();
   }, []);
 
   const login = async (token: string) => {
     setIsLoadingAuth(true);
-    await setValueAsyncStorage('token', token);
+    await setValueAsyncStorage("token", token);
     setIsAuthenticated(true);
     setIsLoadingAuth(false);
   };
 
   const logout = async () => {
     setIsLoadingAuth(true);
-    await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem("token");
     setIsAuthenticated(false);
     setIsLoadingAuth(false);
   };
@@ -57,7 +56,8 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({
         isLoadingAuth,
         login,
         logout,
-      }}>
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

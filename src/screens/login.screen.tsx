@@ -40,7 +40,6 @@ function LoginScreen({
   const onSubmit = async (values: IUser) => {
     setIsSubmitting(true);
     const response = await AuthService.login(values);
-    console.log("response.data.accessToken: ", response?.data.token);
     if (response) {
       // await login(token); // This didn't work
       await setValueAsyncStorage("token", response.data.token);

@@ -1,16 +1,16 @@
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import {RootStackParamList} from '../../interfaces';
-import {useNavigation} from '@react-navigation/native';
-import {Text} from 'react-native-elements';
-import ContactImage from '../common/contactImage.component';
-import {IContact} from '../../interfaces/contact.interface';
-import {textStyles} from '../../styles/text.styles';
-import {buttonStyle} from '../../styles/buttons.style';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import { RootStackParamList } from "../../interfaces";
+import { useNavigation } from "@react-navigation/native";
+import { Text } from "react-native-elements";
+import ContactImage from "../common/contactImage.component";
+import { IContact } from "../../interfaces/transaction.interface";
+import { textStyles } from "../../styles/text.styles";
+import { buttonStyle } from "../../styles/buttons.style";
 
 interface IContactDetailsButton
-  extends Pick<IContact, 'name' | 'id' | 'imageUri'> {}
+  extends Pick<IContact, "name" | "id" | "imageUri"> {}
 
 export function GoToContacDetailsButton({
   name,
@@ -19,7 +19,7 @@ export function GoToContacDetailsButton({
 }: IContactDetailsButton) {
   type ContactDetailsScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
-    'ContactDetails'
+    "ContactDetails"
   >;
 
   const navigation = useNavigation<ContactDetailsScreenNavigationProp>();
@@ -27,7 +27,8 @@ export function GoToContacDetailsButton({
   return (
     <TouchableOpacity
       style={buttonStyle.contacDetailsButton}
-      onPress={() => navigation.navigate('ContactDetails', {contactId: id})}>
+      onPress={() => navigation.navigate("ContactDetails", { contactId: id })}
+    >
       <ContactImage pictureUri={imageUri} />
       <Text style={textStyles.nameTextTouchableButton}>{name}</Text>
     </TouchableOpacity>

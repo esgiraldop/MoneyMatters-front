@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { SectionList, Text, View } from "react-native";
 import { GoToContacDetailsButton } from "../components/allContacts";
-import { ContactsService } from "../services/contacts.service";
-import { IContact } from "../interfaces/contact.interface";
+import { ContactsService } from "../services/transactions.service";
+import { IContact } from "../interfaces/transaction.interface";
 import { useFocusEffect } from "@react-navigation/native";
 import { PermissionEnum } from "../interfaces/permissions.interface";
 import { checkPermission } from "../utilities/check-permissions.utility";

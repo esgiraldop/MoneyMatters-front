@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import {
   ActivityIndicator,
   ScrollView,
@@ -6,29 +6,29 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from 'react-native';
-import {Formik} from 'formik';
-import {useNavigation} from '@react-navigation/native';
-import {IUpdateContact} from '../interfaces/contact.interface';
-import {ContactsService} from '../services/contacts.service';
-import {RootStackParamList} from '../interfaces';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import ContactImage from '../components/common/contactImage.component';
-import {AddPictureModal} from '../components/common/addPictureModal.component';
-import {theme} from '../theme/main.theme';
+} from "react-native";
+import { Formik } from "formik";
+import { useNavigation } from "@react-navigation/native";
+import { IUpdateContact } from "../interfaces/transaction.interface";
+import { ContactsService } from "../services/transactions.service";
+import { RootStackParamList } from "../interfaces";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import ContactImage from "../components/common/contactImage.component";
+import { AddPictureModal } from "../components/common/addPictureModal.component";
+import { theme } from "../theme/main.theme";
 import {
   GoogleMap,
   IMarkerCoordinates,
-} from '../components/common/googleMap.component';
-import {formStyles} from '../styles/form.styles';
-import {textStyles} from '../styles/text.styles';
-import {buttonStyle} from '../styles/buttons.style';
-import {contactSchema} from '../schemas/contact.schema';
-import {containerStyles} from '../styles/container.styles';
+} from "../components/common/googleMap.component";
+import { formStyles } from "../styles/form.styles";
+import { textStyles } from "../styles/text.styles";
+import { buttonStyle } from "../styles/buttons.style";
+import { contactSchema } from "../schemas/contact.schema";
+import { containerStyles } from "../styles/container.styles";
 
 type AddContactScreenProp = NativeStackNavigationProp<
   RootStackParamList,
-  'AddContact'
+  "AddContact"
 >;
 
 export function AddContactScreen(): React.JSX.Element {
@@ -49,10 +49,10 @@ export function AddContactScreen(): React.JSX.Element {
   };
 
   const initialValues = {
-    name: '',
-    phone: '',
-    email: '',
-    picture: '',
+    name: "",
+    phone: "",
+    email: "",
+    picture: "",
     latitude: 0,
     longitude: 0,
   };
@@ -70,7 +70,8 @@ export function AddContactScreen(): React.JSX.Element {
         <Formik
           initialValues={initialValues}
           validationSchema={contactSchema}
-          onSubmit={onSubmit}>
+          onSubmit={onSubmit}
+        >
           {({
             isSubmitting,
             handleSubmit,
@@ -83,15 +84,16 @@ export function AddContactScreen(): React.JSX.Element {
             <View style={formStyles.formContainer}>
               <TouchableOpacity
                 onPress={() => setAddPictureModalVisible(true)}
-                disabled={!isValid || isSubmitting}>
+                disabled={!isValid || isSubmitting}
+              >
                 <ContactImage pictureUri={imageUri} size={150} />
               </TouchableOpacity>
 
               <Text style={textStyles.label}>Name</Text>
               <TextInput
                 style={textStyles.input}
-                onChangeText={handleChange('name')}
-                onBlur={handleBlur('name')}
+                onChangeText={handleChange("name")}
+                onBlur={handleBlur("name")}
                 value={values.name}
                 placeholder="Enter name"
                 placeholderTextColor={theme.colors.textSecondary}
@@ -103,8 +105,8 @@ export function AddContactScreen(): React.JSX.Element {
               <Text style={textStyles.label}>Phone number</Text>
               <TextInput
                 style={textStyles.input}
-                onChangeText={handleChange('phone')}
-                onBlur={handleBlur('phone')}
+                onChangeText={handleChange("phone")}
+                onBlur={handleBlur("phone")}
                 value={values.phone}
                 defaultValue={initialValues.phone}
                 placeholder="Enter phone number"
@@ -118,8 +120,8 @@ export function AddContactScreen(): React.JSX.Element {
               <Text style={textStyles.label}>email</Text>
               <TextInput
                 style={textStyles.input}
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
                 value={values.email}
                 defaultValue={initialValues.email}
                 placeholder="Enter email"
@@ -139,11 +141,13 @@ export function AddContactScreen(): React.JSX.Element {
                 style={[
                   formStyles.buttonContainer,
                   containerStyles.marginMedium,
-                ]}>
+                ]}
+              >
                 <TouchableOpacity
                   style={buttonStyle.button5}
                   onPress={() => handleSubmit()}
-                  disabled={!isValid || isSubmitting}>
+                  disabled={!isValid || isSubmitting}
+                >
                   {isSubmitting ? (
                     <ActivityIndicator
                       size="large"

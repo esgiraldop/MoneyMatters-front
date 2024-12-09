@@ -31,7 +31,6 @@ function App(): React.JSX.Element {
     const checkToken = async () => {
       setIsAuthenticated(await isTokenValid());
     };
-    console.log("isAuthenticated: ", isAuthenticated);
     checkToken();
   }, []);
 
