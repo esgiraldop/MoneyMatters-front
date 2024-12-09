@@ -1,7 +1,7 @@
 import { privateAxiosInstance } from "../config/axios.config";
 import {
-  ITransactionsSucessfullResponse,
   ISingleTransactionSucessfullResponse,
+  ITransactionsSucessfullResponse,
   IUpdateTransaction,
 } from "../interfaces/transaction.interface";
 import { handleAxiosResponse } from "../utilities/handle-axios-response.utility";
