@@ -40,6 +40,7 @@ export function RegistrationScreen(): React.JSX.Element {
   };
 
   const initialValues = {
+    name: "",
     email: "",
     password: "",
   };
@@ -68,6 +69,21 @@ export function RegistrationScreen(): React.JSX.Element {
             <Text style={[textStyles.titleText, textStyles.textAlignmentLeft]}>
               Welcome to Money Matters
             </Text>
+
+            <Text style={textStyles.label}>Name</Text>
+            <TextInput
+              style={textStyles.input}
+              onChangeText={handleChange("name")}
+              onBlur={handleBlur("name")}
+              value={values.name}
+              placeholder="Enter name"
+              placeholderTextColor={theme.colors.textSecondary}
+              keyboardType="default"
+            />
+            {errors.email && (
+              <Text style={formStyles.error}>{errors.name}</Text>
+            )}
+
             <Text style={textStyles.label}>Email</Text>
             <TextInput
               style={textStyles.input}
