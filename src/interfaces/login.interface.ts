@@ -1,7 +1,7 @@
 export interface ISucessfullLoginResponse {
   code: 201;
   data: {
-    accessToken: string;
+    token: string;
     message: string;
   };
   message: string;
