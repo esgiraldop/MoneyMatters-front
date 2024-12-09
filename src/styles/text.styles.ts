@@ -1,18 +1,18 @@
-import {StyleSheet} from 'react-native';
-import {theme} from '../theme/main.theme';
+import { StyleSheet } from "react-native";
+import { theme } from "../theme/main.theme";
 
 export const textStyles = StyleSheet.create({
   loadingText: {
     color: theme.colors.textSecondary,
-    textAlign: 'center',
+    textAlign: "center",
   },
   errorText: {
     color: theme.colors.error,
-    textAlign: 'center',
+    textAlign: "center",
   },
   sucessText: {
     color: theme.colors.success,
-    textAlign: 'center',
+    textAlign: "center",
   },
   label: {
     color: theme.colors.textPrimary,
@@ -21,41 +21,41 @@ export const textStyles = StyleSheet.create({
   },
   input: {
     backgroundColor: theme.colors.backgroundLight,
-    color: theme.colors.textPrimary,
+    color: theme.colors.textDark,
     padding: theme.spacing.small,
     borderRadius: theme.spacing.small,
-    width: '100%',
+    width: "100%",
     marginBottom: theme.spacing.medium,
   },
   buttonText: {
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.small,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   buttonSmallText: {
     color: theme.colors.textPrimary,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   buttonText3: {
     color: theme.colors.textPrimary,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: theme.fontSizes.small,
   },
   linkText: {
     color: theme.colors.textPrimary,
-    textDecorationLine: 'underline',
-    fontWeight: 'bold',
+    textDecorationLine: "underline",
+    fontWeight: "bold",
   },
   titleText: {
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.title,
     marginBottom: theme.spacing.huge,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   textAlignmentLeft: {
-    textAlign: 'left',
+    textAlign: "left",
   },
   nameText: {
     fontSize: theme.fontSizes.title,
@@ -87,7 +87,7 @@ export const textStyles = StyleSheet.create({
   modalText: {
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.small,
-    textAlign: 'center',
+    textAlign: "center",
   },
   searchBarInput: {
     color: theme.colors.textPrimary,
@@ -97,7 +97,7 @@ export const textStyles = StyleSheet.create({
   },
   sectionHeader: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     backgroundColor: theme.colors.background,
     color: theme.colors.textPrimary,
     padding: theme.spacing.small,

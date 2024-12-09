@@ -7,7 +7,7 @@ import { getAsyncStorageValue } from "../utilities/get-async-storage-contents.ut
 // export const baseURL = 'http://192.168.1.13:3000'; // --> Nala
 // export const baseURL = 'http://192.168.0.244:3000/api'; // --> test back local
 // export const baseURL = 'http://192.168.20.45:3000'; // --> Pospin 5G
-export const baseURL = "http://206.189.238.131:3000/api/"; // --> cloud
+export const baseURL = "http://161.35.2.223:3000/api/"; // --> cloud
 
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL,
