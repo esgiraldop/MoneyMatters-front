@@ -8,6 +8,11 @@ export const containerStyles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     padding: theme.spacing.medium,
   },
+  containerLightBc: {
+    flex: 1,
+    backgroundColor: theme.colors.backgroundLight,
+    padding: theme.spacing.medium,
+  },
   centeredContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -17,6 +22,10 @@ export const containerStyles = StyleSheet.create({
   paddedContainer: {
     padding: theme.spacing.large,
     backgroundColor: theme.colors.background,
+  },
+  paddedContainerLightBc: {
+    padding: theme.spacing.large,
+    backgroundColor: theme.colors.backgroundLight,
   },
 
   // Layout Containers

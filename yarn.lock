@@ -354,7 +354,7 @@
     "@babel/helper-create-regexp-features-plugin" "^7.18.6"
     "@babel/helper-plugin-utils" "^7.18.6"
 
-"@babel/plugin-transform-arrow-functions@^7.0.0", "@babel/plugin-transform-arrow-functions@^7.25.7":
+"@babel/plugin-transform-arrow-functions@^7.0.0", "@babel/plugin-transform-arrow-functions@^7.0.0-0", "@babel/plugin-transform-arrow-functions@^7.25.7":
   version "7.25.7"
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
@@ -383,7 +383,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
 
-"@babel/plugin-transform-class-properties@^7.24.1", "@babel/plugin-transform-class-properties@^7.25.7":
+"@babel/plugin-transform-class-properties@^7.0.0-0", "@babel/plugin-transform-class-properties@^7.24.1", "@babel/plugin-transform-class-properties@^7.25.7":
   version "7.25.7"
   dependencies:
     "@babel/helper-create-class-features-plugin" "^7.25.7"
@@ -395,7 +395,7 @@
     "@babel/helper-create-class-features-plugin" "^7.25.7"
     "@babel/helper-plugin-utils" "^7.25.7"
 
-"@babel/plugin-transform-classes@^7.0.0", "@babel/plugin-transform-classes@^7.25.7":
+"@babel/plugin-transform-classes@^7.0.0", "@babel/plugin-transform-classes@^7.0.0-0", "@babel/plugin-transform-classes@^7.25.7":
   version "7.25.7"
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.25.7"
@@ -526,7 +526,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
 
-"@babel/plugin-transform-nullish-coalescing-operator@^7.24.1", "@babel/plugin-transform-nullish-coalescing-operator@^7.25.8":
+"@babel/plugin-transform-nullish-coalescing-operator@^7.0.0-0", "@babel/plugin-transform-nullish-coalescing-operator@^7.24.1", "@babel/plugin-transform-nullish-coalescing-operator@^7.25.8":
   version "7.25.8"
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
@@ -554,7 +554,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
 
-"@babel/plugin-transform-optional-chaining@^7.24.5", "@babel/plugin-transform-optional-chaining@^7.25.7", "@babel/plugin-transform-optional-chaining@^7.25.8":
+"@babel/plugin-transform-optional-chaining@^7.0.0-0", "@babel/plugin-transform-optional-chaining@^7.24.5", "@babel/plugin-transform-optional-chaining@^7.25.7", "@babel/plugin-transform-optional-chaining@^7.25.8":
   version "7.25.8"
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
@@ -628,7 +628,7 @@
     babel-plugin-polyfill-regenerator "^0.6.1"
     semver "^6.3.1"
 
-"@babel/plugin-transform-shorthand-properties@^7.0.0", "@babel/plugin-transform-shorthand-properties@^7.25.7":
+"@babel/plugin-transform-shorthand-properties@^7.0.0", "@babel/plugin-transform-shorthand-properties@^7.0.0-0", "@babel/plugin-transform-shorthand-properties@^7.25.7":
   version "7.25.7"
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
@@ -644,7 +644,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
 
-"@babel/plugin-transform-template-literals@^7.25.7":
+"@babel/plugin-transform-template-literals@^7.0.0-0", "@babel/plugin-transform-template-literals@^7.25.7":
   version "7.25.7"
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
@@ -674,7 +674,7 @@
     "@babel/helper-create-regexp-features-plugin" "^7.25.7"
     "@babel/helper-plugin-utils" "^7.25.7"
 
-"@babel/plugin-transform-unicode-regex@^7.0.0", "@babel/plugin-transform-unicode-regex@^7.25.7":
+"@babel/plugin-transform-unicode-regex@^7.0.0", "@babel/plugin-transform-unicode-regex@^7.0.0-0", "@babel/plugin-transform-unicode-regex@^7.25.7":
   version "7.25.7"
   dependencies:
     "@babel/helper-create-regexp-features-plugin" "^7.25.7"
@@ -772,7 +772,7 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/preset-typescript@^7.13.0":
+"@babel/preset-typescript@^7.13.0", "@babel/preset-typescript@^7.16.7":
   version "7.25.7"
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
@@ -822,6 +822,13 @@
 
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
+
+"@egjs/hammerjs@^2.0.17":
+  version "2.0.17"
+  resolved "https://registry.npmjs.org/@egjs/hammerjs/-/hammerjs-2.0.17.tgz"
+  integrity sha512-XQsZgjm2EcVUiZQf11UBJQfmZeEmOW8DpI1gsFeln6w0ae0ii4dMQEQ0kjl6DspdWX1aGY1/loyXnP0JS06e/A==
+  dependencies:
+    "@types/hammerjs" "^2.0.36"
 
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.4.0"
@@ -1428,6 +1435,11 @@
   resolved "https://registry.npmjs.org/@react-native-community/geolocation/-/geolocation-3.4.0.tgz"
   integrity sha512-bzZH89/cwmpkPMKKveoC72C4JH0yF4St5Ceg/ZM9pA1SqX9MlRIrIrrOGZ/+yi++xAvFDiYfihtn9TvXWU9/rA==
 
+"@react-native-community/masked-view@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.npmjs.org/@react-native-community/masked-view/-/masked-view-0.1.11.tgz"
+  integrity sha512-rQfMIGSR/1r/SyN87+VD8xHHzDYeHaJq6elOSCAD+0iLagXkSI2pfA0LmSXP21uw5i3em7GkkRjfJ8wpqWXZNw==
+
 "@react-native-mac/virtualized-lists@0.75.0":
   version "0.75.0"
   resolved "https://registry.npmjs.org/@react-native-mac/virtualized-lists/-/virtualized-lists-0.75.0.tgz"
@@ -1989,6 +2001,11 @@
   version "4.1.9"
   dependencies:
     "@types/node" "*"
+
+"@types/hammerjs@^2.0.36":
+  version "2.0.46"
+  resolved "https://registry.npmjs.org/@types/hammerjs/-/hammerjs-2.0.46.tgz"
+  integrity sha512-ynRvcq6wvqexJ9brDMS4BnBLzmr0e14d6ZJTEShTBWKymQiHwlAyGu0ZPEFI2Fh1U53F7tN9ufClWM5KvqkKOw==
 
 "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.5"
@@ -5102,6 +5119,16 @@ react-native-flipper@^0.164.0:
   resolved "https://registry.npmjs.org/react-native-flipper/-/react-native-flipper-0.164.0.tgz"
   integrity sha512-iJhIe3rqx6okuzBp4AJsTa2b8VRAOGzoLRFx/4HGbaGvu8AurZjz8TTQkhJsRma8dsHN2b6KKZPvGGW3wdWzvA==
 
+react-native-gesture-handler@^2.21.2:
+  version "2.21.2"
+  resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.21.2.tgz"
+  integrity sha512-HcwB225K9aeZ8e/B8nFzEh+2T4EPWTeamO1l/y3PcQ9cyCDYO2zja/G31ITpYRIqkip7XzGs6wI/gnHOQn1LDQ==
+  dependencies:
+    "@egjs/hammerjs" "^2.0.17"
+    hoist-non-react-statics "^3.3.0"
+    invariant "^2.2.4"
+    prop-types "^15.7.2"
+
 react-native-image-crop-picker@^0.41.4:
   version "0.41.4"
   resolved "https://registry.npmjs.org/react-native-image-crop-picker/-/react-native-image-crop-picker-0.41.4.tgz"
@@ -5168,6 +5195,11 @@ react-native-maps@^1.18.2:
   dependencies:
     "@types/geojson" "^7946.0.13"
 
+react-native-pager-view@^6.6.1, "react-native-pager-view@>= 6.0.0":
+  version "6.6.1"
+  resolved "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-6.6.1.tgz"
+  integrity sha512-2dFulYs8JxEUecemv1PGWCUv+ZQuwSaQfFiSr2++KH8km5HzpuS8vJ3MVb0M6UhpqacFDj9OGe7z97ks/mr7gA==
+
 react-native-permissions@^5.1.0:
   version "5.1.0"
   resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-5.1.0.tgz"
@@ -5187,15 +5219,32 @@ react-native-ratings@8.0.4:
   dependencies:
     lodash "^4.17.15"
 
-"react-native-safe-area-context@^3.1.9 || ^4.0.0", react-native-safe-area-context@^4.11.1, "react-native-safe-area-context@>= 3.0.0":
-  version "4.11.1"
-  resolved "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.11.1.tgz"
-  integrity sha512-urF1m4nFiZFaWjsv2zj8J/hKvo4b2tJW+6CYU1mY4lKv1RwhG2eV8J/EHKuNlLhATZx3+6j7szrpHrQW2ZcAaQ==
+react-native-reanimated@^3.16.5:
+  version "3.16.5"
+  resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.16.5.tgz"
+  integrity sha512-mq/5k14pimkhCeP9XwFJkEr8XufaHqIekum8fqpsn0fcBzbLvyiqfM2LEuBvi0+DTv5Bd2dHmUHkYqGYfkj3Jw==
+  dependencies:
+    "@babel/plugin-transform-arrow-functions" "^7.0.0-0"
+    "@babel/plugin-transform-class-properties" "^7.0.0-0"
+    "@babel/plugin-transform-classes" "^7.0.0-0"
+    "@babel/plugin-transform-nullish-coalescing-operator" "^7.0.0-0"
+    "@babel/plugin-transform-optional-chaining" "^7.0.0-0"
+    "@babel/plugin-transform-shorthand-properties" "^7.0.0-0"
+    "@babel/plugin-transform-template-literals" "^7.0.0-0"
+    "@babel/plugin-transform-unicode-regex" "^7.0.0-0"
+    "@babel/preset-typescript" "^7.16.7"
+    convert-source-map "^2.0.0"
+    invariant "^2.2.4"
 
-react-native-screens@^3.34.0, "react-native-screens@>= 3.0.0":
-  version "3.34.0"
-  resolved "https://registry.npmjs.org/react-native-screens/-/react-native-screens-3.34.0.tgz"
-  integrity sha512-8ri3Pd9QcpfXnVckOe/Lnto+BXmSPHV/Q0RB0XW0gDKsCv5wi5k7ez7g1SzgiYHl29MSdiqgjH30zUyOOowOaw==
+"react-native-safe-area-context@^3.1.9 || ^4.0.0", react-native-safe-area-context@^4.14.1, "react-native-safe-area-context@>= 3.0.0":
+  version "4.14.1"
+  resolved "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.14.1.tgz"
+  integrity sha512-+tUhT5WBl8nh5+P+chYhAjR470iCByf9z5EYdCEbPaAK3Yfzw+o8VRPnUgmPAKlSccOgQBxx3NOl/Wzckn9ujg==
+
+react-native-screens@^3.35.0, "react-native-screens@>= 3.0.0":
+  version "3.35.0"
+  resolved "https://registry.npmjs.org/react-native-screens/-/react-native-screens-3.35.0.tgz"
+  integrity sha512-rmkqb/M/SQIrXwygk6pXcOhgHltYAhidf1WceO7ujAxkr6XtwmgFyd1HIztsrJa568GrAuwPdQ11I7TpVk+XsA==
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
@@ -5220,6 +5269,13 @@ react-native-splash-screen@^3.3.0:
   resolved "https://registry.npmjs.org/react-native-splash-screen/-/react-native-splash-screen-3.3.0.tgz"
   integrity sha512-rGjt6HkoSXxMqH4SQUJ1gnPQlPJV8+J47+4yhgTIan4bVvAwJhEeJH7wWt9hXSdH4+VfwTS0GTaflj1Tw83IhA==
 
+react-native-tab-view@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-4.0.5.tgz"
+  integrity sha512-Xn3TpYo4yvKRC/f4+cOcvsXlitdnSaYkacshckrEI3JiDmFKNFIRVNxtZFggm4MwbJafq2RzuzR6xrgKoxgkTw==
+  dependencies:
+    use-latest-callback "^0.2.1"
+
 react-native-vector-icons@^10.2.0, react-native-vector-icons@>7.0.0:
   version "10.2.0"
   resolved "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-10.2.0.tgz"
@@ -5228,7 +5284,7 @@ react-native-vector-icons@^10.2.0, react-native-vector-icons@>7.0.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native@*, "react-native@^0.0.0-0 || >=0.65 <1.0", "react-native@>= 0.64.3", react-native@>=0.40.0, react-native@>=0.57.0, react-native@>=0.60, react-native@>=0.60.0, react-native@>=0.70.0, react-native@>0.62.0, react-native@0.75.4:
+react-native@*, "react-native@^0.0.0-0 || >=0.65 <1.0", "react-native@>= 0.64.3", react-native@>=0.40.0, react-native@>=0.57, react-native@>=0.57.0, react-native@>=0.60, react-native@>=0.60.0, react-native@>=0.70.0, react-native@>0.62.0, react-native@0.75.4:
   version "0.75.4"
   dependencies:
     "@jest/create-cache-key-function" "^29.6.3"
@@ -5287,7 +5343,7 @@ react-test-renderer@18.3.1:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.2"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17 || ^18", react@^18.2.0, react@^18.3.1, "react@>= 17.0.1", react@>=16, react@>=16.8, react@>=16.8.0, react@>=17.0.0, react@>=18.1.0, react@18.3.1:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17 || ^18", react@^18.2.0, react@^18.3.1, "react@>= 17.0.1", "react@>= 18.2.0", react@>=16, react@>=16.0, react@>=16.8, react@>=16.8.0, react@>=17.0.0, react@>=18.1.0, react@18.3.1:
   version "18.3.1"
   dependencies:
     loose-envify "^1.1.0"

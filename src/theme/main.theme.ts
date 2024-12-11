@@ -24,12 +24,12 @@ export const theme = {
     },
     h2: {
       fontSize: 25,
-      fontWeight: "600" as TextStyle["fontWeight"], // Explicitly typed
+      fontWeight: "700" as TextStyle["fontWeight"], // Explicitly typed
       fontFamily: "Raleway",
     },
     h3: {
       fontSize: 20,
-      fontWeight: "500" as TextStyle["fontWeight"], // Explicitly typed
+      fontWeight: "600" as TextStyle["fontWeight"], // Explicitly typed
       fontFamily: "Roboto",
     },
     body1: {
