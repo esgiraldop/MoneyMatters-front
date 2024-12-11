@@ -2,113 +2,103 @@ import { StyleSheet } from "react-native";
 import { theme } from "../theme/main.theme";
 
 export const textStyles = StyleSheet.create({
-  loadingText: {
-    color: theme.colors.textSecondary,
-    textAlign: "center",
-  },
-  errorText: {
-    color: theme.colors.error,
-    textAlign: "center",
-  },
-  sucessText: {
-    color: theme.colors.success,
-    textAlign: "center",
-  },
-  label: {
+  // Text Colors
+  textPrimary: {
     color: theme.colors.textPrimary,
-    fontSize: theme.typography.body1.fontSize,
-    marginBottom: theme.spacing.small,
   },
-  input: {
-    backgroundColor: theme.colors.backgroundLight,
+  textSecondary: {
     color: theme.colors.textSecondary,
-    padding: theme.spacing.small,
-    borderRadius: theme.spacing.small,
+  },
+  textError: {
+    color: theme.colors.error,
+  },
+  textSuccess: {
+    color: theme.colors.success,
+  },
+  textWarning: {
+    color: theme.colors.warning,
+  },
+
+  // Typography Sizes and Weights
+  textH1: {
+    fontSize: theme.typography.h1.fontSize,
+    fontWeight: theme.typography.h1.fontWeight,
+    fontFamily: theme.typography.h1.fontFamily,
+    color: theme.colors.textPrimary,
+  },
+  textH2: {
+    fontSize: theme.typography.h2.fontSize,
+    fontWeight: theme.typography.h2.fontWeight,
+    fontFamily: theme.typography.h2.fontFamily,
+    color: theme.colors.textPrimary,
+  },
+  textH3: {
+    fontSize: theme.typography.h3.fontSize,
+    fontWeight: theme.typography.h3.fontWeight,
+    fontFamily: theme.typography.h3.fontFamily,
+    color: theme.colors.textPrimary,
+  },
+  textBody1: {
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.body1.fontWeight,
+    fontFamily: theme.typography.body1.fontFamily,
+    color: theme.colors.textPrimary,
+  },
+  textBody2: {
+    fontSize: theme.typography.body2.fontSize,
+    fontWeight: theme.typography.body2.fontWeight,
+    fontFamily: theme.typography.body2.fontFamily,
+    color: theme.colors.textSecondary,
+  },
+  textBold: {
+    fontWeight: theme.typography.bold.fontWeight,
+    fontFamily: theme.typography.bold.fontFamily,
+  },
+  textItalic: {
+    fontStyle: "italic", // Corrected to match TypeScript expectations
+    fontFamily: theme.typography.italic.fontFamily,
+  },
+
+  // Text Alignment
+  textAlignLeft: {
+    textAlign: "left",
+  },
+  textAlignCenter: {
+    textAlign: "center",
+  },
+  textAlignRight: {
+    textAlign: "right",
+  },
+
+  // Input and Buttons
+  inputField: {
+    color: theme.colors.textSecondary,
     width: "100%",
-    marginBottom: theme.spacing.medium,
   },
   buttonText: {
     color: theme.colors.textPrimary,
     fontSize: theme.typography.body1.fontSize,
-    fontWeight: "bold",
+    fontWeight: theme.typography.bold.fontWeight,
     textAlign: "center",
   },
-  buttonSmallText: {
+
+  // Special Use Cases
+  sectionHeader: {
+    fontSize: theme.typography.h2.fontSize,
+    fontWeight: theme.typography.h2.fontWeight,
+    backgroundColor: theme.colors.backgroundLighter,
     color: theme.colors.textPrimary,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  buttonText3: {
-    color: theme.colors.textPrimary,
-    textAlign: "center",
-    fontSize: theme.typography.body1.fontSize,
+    padding: theme.spacing.small,
   },
   linkText: {
-    color: theme.colors.textPrimary,
+    color: theme.colors.accent,
     textDecorationLine: "underline",
-    fontWeight: "bold",
-    fontSize: theme.typography.body1.fontSize,
-  },
-  titleText: {
-    color: theme.colors.textPrimary,
-    fontSize: theme.typography.h1.fontSize,
-    marginBottom: theme.spacing.huge,
-    fontWeight: "bold",
-  },
-  textAlignmentLeft: {
-    textAlign: "left",
-  },
-  textAlignmentCenter: {
-    textAlign: "center",
-  },
-  nameText: {
-    fontSize: theme.typography.body1.fontSize,
-    color: theme.colors.textPrimary,
-    marginTop: theme.spacing.small,
-  },
-  nameTextTouchableButton: {
-    color: theme.colors.textPrimary,
-    marginLeft: theme.spacing.medium,
-    fontSize: theme.typography.body1.fontSize,
-  },
-  phoneText: {
-    fontSize: theme.typography.body1.fontSize,
-    color: theme.colors.textSecondary,
-    marginVertical: theme.spacing.small,
-  },
-  phoneTextPrimary: {
-    fontSize: theme.typography.body1.fontSize,
-    color: theme.colors.textPrimary,
-    marginVertical: theme.spacing.small,
-  },
-  emailText: {
-    fontSize: theme.typography.body1.fontSize,
-    color: theme.colors.textSecondary,
-  },
-  cancelButtonText: {
-    color: theme.colors.textSecondary,
-    fontSize: theme.typography.body1.fontSize,
-  },
-  bigText: {
-    color: theme.colors.textPrimary,
+    fontWeight: theme.typography.bold.fontWeight,
     fontSize: theme.typography.body1.fontSize,
   },
   modalText: {
     color: theme.colors.textPrimary,
     fontSize: theme.typography.body1.fontSize,
     textAlign: "center",
-  },
-  searchBarInput: {
-    color: theme.colors.textPrimary,
-    fontFamily: theme.typography.fontFamily,
-    fontWeight: theme.typography.h3.fontWeight,
-    fontSize: theme.typography.body1.fontSize,
-  },
-  sectionHeader: {
-    fontSize: 18,
-    fontWeight: "bold",
-    backgroundColor: theme.colors.background,
-    color: theme.colors.textPrimary,
-    padding: theme.spacing.small,
   },
 });

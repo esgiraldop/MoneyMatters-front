@@ -13,7 +13,6 @@ import { AuthService } from "../services/auth.service";
 import { IUser } from "../interfaces/user.interface";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../interfaces";
-import { formStyles } from "../styles/form.styles";
 import { textStyles } from "../styles/text.styles";
 import { buttonStyle } from "../styles/buttons.style";
 import { registrationSchema } from "../schemas/auth.schema";
@@ -35,13 +34,11 @@ function LoginScreen({
 }: LoginScreenProps): React.JSX.Element {
   const navigation = useNavigation<LoginScreenProp>();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  // const {login} = useAuth(); // this didn´t work
 
   const onSubmit = async (values: IUser) => {
     setIsSubmitting(true);
     const response = await AuthService.login(values);
     if (response) {
-      // await login(token); // This didn't work
       await setValueAsyncStorage("token", response.data.token);
       setIsSubmitting(false);
       if (setIsAuthenticated) setIsAuthenticated(true);
@@ -64,10 +61,7 @@ function LoginScreen({
 
   return (
     <View
-      style={[
-        containerStyles.container,
-        formStyles.VerticallyCenteredcontainer,
-      ]}
+      style={[containerStyles.container, containerStyles.centeredContainer]}
     >
       <Formik
         initialValues={initialValues}
@@ -82,11 +76,19 @@ function LoginScreen({
           errors,
           isValid,
         }) => (
-          <View style={formStyles.formContainer}>
-            <Text style={textStyles.titleText}>Sign in</Text>
-            <Text style={textStyles.label}>Email</Text>
+          <View style={containerStyles.centeredContainer}>
+            <Text
+              style={[
+                textStyles.textH1,
+                textStyles.textAlignCenter,
+                containerStyles.marginLarge,
+              ]}
+            >
+              Sign in
+            </Text>
+            <Text style={textStyles.textBody1}>Email</Text>
             <TextInput
-              style={textStyles.input}
+              style={[textStyles.inputField, containerStyles.inputField]}
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
               value={values.email}
@@ -95,12 +97,12 @@ function LoginScreen({
               keyboardType="email-address"
             />
             {errors.email && (
-              <Text style={formStyles.error}>{errors.email}</Text>
+              <Text style={textStyles.textError}>{errors.email}</Text>
             )}
 
-            <Text style={textStyles.label}>Password</Text>
+            <Text style={textStyles.textBody1}>Password</Text>
             <TextInput
-              style={textStyles.input}
+              style={[textStyles.inputField, containerStyles.inputField]}
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
               value={values.password}
@@ -109,12 +111,12 @@ function LoginScreen({
               secureTextEntry={true}
             />
             {errors.password && (
-              <Text style={formStyles.error}>{errors.password}</Text>
+              <Text style={textStyles.textError}>{errors.password}</Text>
             )}
 
-            <View style={formStyles.buttonContainer}>
+            <View style={containerStyles.rowContainer}>
               <TouchableOpacity
-                style={buttonStyle.button5}
+                style={buttonStyle.buttonPrimary}
                 onPress={() => handleSubmit()}
                 disabled={!isValid || isSubmitting}
               >
@@ -128,7 +130,7 @@ function LoginScreen({
                 )}
               </TouchableOpacity>
             </View>
-            <Text style={textStyles.phoneTextPrimary}>
+            <Text style={textStyles.textBody1}>
               Don't you have an account?{"  "}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Register")}>

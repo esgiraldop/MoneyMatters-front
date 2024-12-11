@@ -1,82 +1,76 @@
-import {StyleSheet} from 'react-native';
-import {theme} from '../theme/main.theme';
+import { StyleSheet } from "react-native";
+import { theme } from "../theme/main.theme";
 
 export const buttonStyle = StyleSheet.create({
-  contacDetailsButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+  // General Button Styles
+  buttonBase: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: theme.spacing.small,
+  },
+  buttonPrimary: {
+    backgroundColor: theme.colors.accent,
+    paddingVertical: theme.spacing.medium,
+    paddingHorizontal: theme.spacing.large,
+    alignItems: "center",
+    marginVertical: theme.spacing.small,
+    borderRadius: theme.spacing.small,
+  },
+  buttonSecondary: {
+    backgroundColor: theme.colors.backgroundLight,
+    paddingVertical: theme.spacing.medium,
+    paddingHorizontal: theme.spacing.large,
+    borderRadius: theme.spacing.small,
+    alignItems: "center",
+    marginVertical: theme.spacing.small,
+    borderWidth: 1,
+    borderColor: theme.colors.borderColor,
+  },
+  buttonDisabled: {
+    backgroundColor: theme.colors.background,
+    opacity: 0.6,
+  },
+
+  // Specific Button Styles
+  contactDetailsButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
     padding: theme.spacing.medium,
     marginBottom: theme.spacing.small,
     borderRadius: 8,
     backgroundColor: theme.colors.background,
     elevation: 1,
     shadowColor: theme.colors.textSecondary,
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
-  button: {
-    backgroundColor: theme.colors.backgroundLight,
-    padding: theme.spacing.medium,
-    marginTop: theme.spacing.medium,
-    borderRadius: theme.spacing.small,
-    alignItems: 'center',
-  },
-  button2: {
-    backgroundColor: theme.colors.accent,
-    paddingVertical: theme.spacing.medium,
-    paddingHorizontal: theme.spacing.large,
-    borderRadius: theme.spacing.small,
-    width: '100%',
-    alignItems: 'center',
-    marginVertical: theme.spacing.small,
-  },
   roundButton: {
     backgroundColor: theme.colors.background,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 50,
   },
-  button5: {
-    flex: 1,
-    backgroundColor: theme.colors.accent,
-    borderRadius: theme.spacing.small,
-    paddingVertical: theme.spacing.medium,
-    elevation: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginHorizontal: theme.spacing.small,
-  },
-  touchableButtonContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: theme.spacing.medium,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.borderColor,
-  },
+
+  // Combined Buttons
   cancelButton: {
     flex: 1,
     backgroundColor: theme.colors.backgroundLight,
     padding: theme.spacing.medium,
     borderRadius: theme.spacing.small,
-    alignItems: 'center',
+    alignItems: "center",
     marginRight: theme.spacing.small,
   },
-  cancelButton2: {
-    backgroundColor: theme.colors.backgroundLight,
-    paddingVertical: theme.spacing.medium,
-    paddingHorizontal: theme.spacing.large,
-    borderRadius: theme.spacing.small,
-    width: '100%',
-    alignItems: 'center',
-    marginVertical: theme.spacing.small,
-    borderWidth: 1,
-    borderColor: theme.colors.borderColor,
+  touchableButtonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: theme.spacing.medium,
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.borderColor,
   },
-  cancelButton3: {
-    backgroundColor: theme.colors.backgroundLight,
-    marginTop: theme.spacing.small,
-  },
+
+  // Button Wrappers
   buttonWrapper: {
     marginLeft: theme.spacing.small,
   },

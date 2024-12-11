@@ -13,7 +13,6 @@ import { AuthService } from "../services/auth.service";
 import { IUser } from "../interfaces/user.interface";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../interfaces";
-import { formStyles } from "../styles/form.styles";
 import { textStyles } from "../styles/text.styles";
 import { buttonStyle } from "../styles/buttons.style";
 import { registrationSchema } from "../schemas/auth.schema";
@@ -47,10 +46,7 @@ export function RegistrationScreen(): React.JSX.Element {
 
   return (
     <View
-      style={[
-        containerStyles.container,
-        formStyles.VerticallyCenteredcontainer,
-      ]}
+      style={[containerStyles.container, containerStyles.centeredContainer]}
     >
       <Formik
         initialValues={initialValues}
@@ -65,16 +61,20 @@ export function RegistrationScreen(): React.JSX.Element {
           errors,
           isValid,
         }) => (
-          <View style={formStyles.formContainer}>
+          <View style={containerStyles.centeredContainer}>
             <Text
-              style={[textStyles.titleText, textStyles.textAlignmentCenter]}
+              style={[
+                textStyles.textH1,
+                textStyles.textAlignCenter,
+                containerStyles.marginLarge,
+              ]}
             >
               Welcome to Money Matters
             </Text>
 
-            <Text style={textStyles.label}>Name</Text>
+            <Text style={textStyles.textBody1}>Name</Text>
             <TextInput
-              style={textStyles.input}
+              style={[textStyles.inputField, containerStyles.inputField]}
               onChangeText={handleChange("name")}
               onBlur={handleBlur("name")}
               value={values.name}
@@ -82,13 +82,13 @@ export function RegistrationScreen(): React.JSX.Element {
               placeholderTextColor={theme.colors.textSecondary}
               keyboardType="default"
             />
-            {errors.email && (
-              <Text style={formStyles.error}>{errors.name}</Text>
+            {errors.name && (
+              <Text style={textStyles.textError}>{errors.name}</Text>
             )}
 
-            <Text style={textStyles.label}>Email</Text>
+            <Text style={textStyles.textBody1}>Email</Text>
             <TextInput
-              style={textStyles.input}
+              style={[textStyles.inputField, containerStyles.inputField]}
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
               value={values.email}
@@ -97,12 +97,12 @@ export function RegistrationScreen(): React.JSX.Element {
               keyboardType="email-address"
             />
             {errors.email && (
-              <Text style={formStyles.error}>{errors.email}</Text>
+              <Text style={textStyles.textError}>{errors.email}</Text>
             )}
 
-            <Text style={textStyles.label}>Password</Text>
+            <Text style={textStyles.textBody1}>Password</Text>
             <TextInput
-              style={textStyles.input}
+              style={[textStyles.inputField, containerStyles.inputField]}
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
               value={values.password}
@@ -111,12 +111,12 @@ export function RegistrationScreen(): React.JSX.Element {
               secureTextEntry={true}
             />
             {errors.password && (
-              <Text style={formStyles.error}>{errors.password}</Text>
+              <Text style={textStyles.textError}>{errors.password}</Text>
             )}
 
-            <View style={formStyles.buttonContainer}>
+            <View style={containerStyles.rowContainer}>
               <TouchableOpacity
-                style={buttonStyle.button5}
+                style={buttonStyle.buttonPrimary}
                 onPress={() => handleSubmit()}
                 disabled={!isValid || isSubmitting}
               >
@@ -130,8 +130,8 @@ export function RegistrationScreen(): React.JSX.Element {
                 )}
               </TouchableOpacity>
             </View>
-            <Text style={textStyles.phoneTextPrimary}>
-              Do you already have an account?{"  "}
+            <Text style={textStyles.textBody1}>
+              Do you already have an account?{" "}
               <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                 <Text style={textStyles.linkText}>Sign in</Text>
               </TouchableOpacity>
