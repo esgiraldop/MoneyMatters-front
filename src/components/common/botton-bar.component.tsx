@@ -87,8 +87,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: theme.colors.textPrimary,
-    fontFamily: theme.fonts.default.fontFamily,
-    fontSize: theme.fontSizes.small,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.typography.body1.fontSize,
     // marginTop: theme.spacing.small / 2,
   },
 });

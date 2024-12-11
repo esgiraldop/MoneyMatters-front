@@ -39,7 +39,7 @@ export const StackNavigator = ({
         },
         headerTintColor: theme.colors.textPrimary,
         headerTitleStyle: {
-          fontSize: theme.fontSizes.title,
+          fontSize: theme.typography.h2.fontSize,
           color: theme.colors.textPrimary,
         },
         animation: "slide_from_right",

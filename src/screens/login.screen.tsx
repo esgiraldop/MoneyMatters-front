@@ -128,7 +128,7 @@ function LoginScreen({
                 )}
               </TouchableOpacity>
             </View>
-            <Text style={textStyles.phoneText}>
+            <Text style={textStyles.phoneTextPrimary}>
               Don't you have an account?{"  "}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Register")}>

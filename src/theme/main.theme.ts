@@ -1,3 +1,5 @@
+import { TextStyle } from "react-native"; // Import for accurate typing
+
 export const theme = {
   colors: {
     background: "#344E41",
@@ -6,29 +8,48 @@ export const theme = {
     accent: "#A3B18A",
     backgroundLight: "#DAD7CD",
     textPrimary: "#FFFFFF",
-    textSecondary: "#B0B0B0",
+    textSecondary: "#344E41",
     textDark: "#000",
-    error: "#de0a26",
-    success: "#3b8132",
+    error: "#D72A2A",
+    success: "#4BB543",
+    warning: "#F17300",
     transparent: "#00000080",
   },
-  fonts: {
-    default: {
-      fontFamily: "Sans-Serif", // Change this to your desired font family (e.g., 'Roboto', 'Arial')
-      fontWeight: "400" as "normal" | "400",
+  typography: {
+    fontFamily: "Roboto",
+    h1: {
+      fontSize: 30,
+      fontWeight: "700" as TextStyle["fontWeight"], // Explicitly typed
+      fontFamily: "Raleway",
+    },
+    h2: {
+      fontSize: 25,
+      fontWeight: "600" as TextStyle["fontWeight"], // Explicitly typed
+      fontFamily: "Raleway",
+    },
+    h3: {
+      fontSize: 20,
+      fontWeight: "500" as TextStyle["fontWeight"], // Explicitly typed
+      fontFamily: "Roboto",
+    },
+    body1: {
+      fontSize: 16,
+      fontWeight: "400" as TextStyle["fontWeight"], // Explicitly typed
+      fontFamily: "Roboto",
+    },
+    body2: {
+      fontSize: 14,
+      fontWeight: "400" as TextStyle["fontWeight"], // Explicitly typed
+      fontFamily: "Roboto",
     },
     bold: {
-      fontFamily: "Sans-Serif",
-      fontWeight: "bold",
+      fontFamily: "Roboto",
+      fontWeight: "bold" as TextStyle["fontWeight"], // Explicitly typed
     },
     italic: {
-      fontFamily: "Sans-Serif",
+      fontFamily: "Roboto",
       fontStyle: "italic",
     },
-  },
-  fontSizes: {
-    title: 24,
-    small: 18,
   },
   spacing: {
     small: 8,

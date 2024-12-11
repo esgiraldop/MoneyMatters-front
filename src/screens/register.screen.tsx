@@ -66,7 +66,9 @@ export function RegistrationScreen(): React.JSX.Element {
           isValid,
         }) => (
           <View style={formStyles.formContainer}>
-            <Text style={[textStyles.titleText, textStyles.textAlignmentLeft]}>
+            <Text
+              style={[textStyles.titleText, textStyles.textAlignmentCenter]}
+            >
               Welcome to Money Matters
             </Text>
 
@@ -128,7 +130,7 @@ export function RegistrationScreen(): React.JSX.Element {
                 )}
               </TouchableOpacity>
             </View>
-            <Text style={textStyles.phoneText}>
+            <Text style={textStyles.phoneTextPrimary}>
               Do you already have an account?{"  "}
               <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                 <Text style={textStyles.linkText}>Sign in</Text>

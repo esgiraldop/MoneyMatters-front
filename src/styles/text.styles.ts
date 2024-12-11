@@ -16,12 +16,12 @@ export const textStyles = StyleSheet.create({
   },
   label: {
     color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
     marginBottom: theme.spacing.small,
   },
   input: {
     backgroundColor: theme.colors.backgroundLight,
-    color: theme.colors.textDark,
+    color: theme.colors.textSecondary,
     padding: theme.spacing.small,
     borderRadius: theme.spacing.small,
     width: "100%",
@@ -29,7 +29,7 @@ export const textStyles = StyleSheet.create({
   },
   buttonText: {
     color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -41,59 +41,68 @@ export const textStyles = StyleSheet.create({
   buttonText3: {
     color: theme.colors.textPrimary,
     textAlign: "center",
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
   },
   linkText: {
     color: theme.colors.textPrimary,
     textDecorationLine: "underline",
     fontWeight: "bold",
+    fontSize: theme.typography.body1.fontSize,
   },
   titleText: {
     color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.title,
+    fontSize: theme.typography.h1.fontSize,
     marginBottom: theme.spacing.huge,
     fontWeight: "bold",
   },
   textAlignmentLeft: {
     textAlign: "left",
   },
+  textAlignmentCenter: {
+    textAlign: "center",
+  },
   nameText: {
-    fontSize: theme.fontSizes.title,
+    fontSize: theme.typography.body1.fontSize,
     color: theme.colors.textPrimary,
     marginTop: theme.spacing.small,
   },
   nameTextTouchableButton: {
     color: theme.colors.textPrimary,
     marginLeft: theme.spacing.medium,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
   },
   phoneText: {
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
     color: theme.colors.textSecondary,
     marginVertical: theme.spacing.small,
   },
+  phoneTextPrimary: {
+    fontSize: theme.typography.body1.fontSize,
+    color: theme.colors.textPrimary,
+    marginVertical: theme.spacing.small,
+  },
   emailText: {
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
     color: theme.colors.textSecondary,
   },
   cancelButtonText: {
     color: theme.colors.textSecondary,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
   },
   bigText: {
     color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
   },
   modalText: {
     color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
     textAlign: "center",
   },
   searchBarInput: {
     color: theme.colors.textPrimary,
-    fontFamily: theme.fonts.default.fontFamily,
-    fontWeight: theme.fonts.default.fontWeight,
-    fontSize: theme.fontSizes.small,
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: theme.typography.h3.fontWeight,
+    fontSize: theme.typography.body1.fontSize,
   },
   sectionHeader: {
     fontSize: 18,

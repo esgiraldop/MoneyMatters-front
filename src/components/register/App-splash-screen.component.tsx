@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   text: {
-    fontSize: theme.fontSizes.title, // or theme's font size for title
+    fontSize: theme.typography.h3.fontSize, // or theme's font size for title
     color: theme.colors.textPrimary, // theme's text color
     textAlign: "center",
   },

@@ -1,23 +1,23 @@
-import {StyleSheet} from 'react-native';
-import {theme} from '../theme/main.theme';
+import { StyleSheet } from "react-native";
+import { theme } from "../theme/main.theme";
 
 export const modalStyles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: theme.colors.transparent,
   },
   centeredViewModal: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalView: {
     backgroundColor: theme.colors.backgroundLight,
     borderRadius: theme.spacing.small,
     padding: theme.spacing.large,
-    alignItems: 'center',
+    alignItems: "center",
     shadowColor: theme.colors.borderColor,
     shadowOffset: {
       width: 0,
@@ -26,16 +26,16 @@ export const modalStyles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    width: '80%', // Centering the modal width
+    width: "80%", // Centering the modal width
   },
   modalView2: {
     margin: 20,
     backgroundColor: theme.colors.background,
     borderRadius: theme.spacing.small,
     padding: theme.spacing.large,
-    alignItems: 'center',
+    alignItems: "center",
     shadowColor: theme.colors.textPrimary,
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
@@ -45,32 +45,32 @@ export const modalStyles = StyleSheet.create({
     paddingVertical: theme.spacing.medium,
     paddingHorizontal: theme.spacing.large,
     borderRadius: theme.spacing.small,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
     marginVertical: theme.spacing.small,
   },
   buttonText: {
     color: theme.colors.textPrimary,
-    fontWeight: 'bold',
-    fontSize: theme.fontSizes.small,
+    fontWeight: "bold",
+    fontSize: theme.typography.body1.fontSize,
   },
   cancelButton: {
     backgroundColor: theme.colors.backgroundLight,
     paddingVertical: theme.spacing.medium,
     paddingHorizontal: theme.spacing.large,
     borderRadius: theme.spacing.small,
-    width: '100%',
-    alignItems: 'center',
+    width: "100%",
+    alignItems: "center",
     marginVertical: theme.spacing.small,
     borderWidth: 1,
     borderColor: theme.colors.borderColor,
   },
   cancelButtonText: {
     color: theme.colors.textSecondary,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
   },
   bigText: {
     color: theme.colors.textPrimary,
-    fontSize: theme.fontSizes.small,
+    fontSize: theme.typography.body1.fontSize,
   },
 });
