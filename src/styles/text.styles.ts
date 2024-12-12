@@ -38,6 +38,12 @@ export const textStyles = StyleSheet.create({
     fontFamily: theme.typography.h3.fontFamily,
     color: theme.colors.textPrimary,
   },
+  textH4: {
+    fontSize: theme.typography.h4.fontSize,
+    fontWeight: theme.typography.h4.fontWeight,
+    fontFamily: theme.typography.h4.fontFamily,
+    color: theme.colors.textPrimary,
+  },
   textBody1: {
     fontSize: theme.typography.body1.fontSize,
     fontWeight: theme.typography.body1.fontWeight,

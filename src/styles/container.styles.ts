@@ -26,11 +26,11 @@ export const containerStyles = StyleSheet.create({
     width: "100%",
   },
   paddedContainer: {
-    padding: theme.spacing.large,
+    padding: theme.spacing.medium,
     backgroundColor: theme.colors.background,
   },
   paddedContainerLightBc: {
-    padding: theme.spacing.large,
+    padding: theme.spacing.medium,
     backgroundColor: theme.colors.backgroundLight,
   },
 
@@ -82,6 +82,32 @@ export const containerStyles = StyleSheet.create({
   },
   marginHuge: {
     margin: theme.spacing.huge,
+  },
+
+  // Paddings
+  paddingSmall: {
+    margin: theme.spacing.small,
+  },
+  paddingMedium: {
+    margin: theme.spacing.medium,
+  },
+  paddingLarge: {
+    margin: theme.spacing.large,
+  },
+  paddingHuge: {
+    margin: theme.spacing.huge,
+  },
+
+  //Background colors
+  light: {
+    backgroundColor: theme.colors.backgroundLight,
+  },
+  //Background colors
+  darkLighter: {
+    backgroundColor: theme.colors.backgroundLighter,
+  },
+  greenLoud: {
+    backgroundColor: theme.colors.borderColor,
   },
 
   // Input fields

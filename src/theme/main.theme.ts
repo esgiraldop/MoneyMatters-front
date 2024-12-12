@@ -32,6 +32,11 @@ export const theme = {
       fontWeight: "700" as TextStyle["fontWeight"], // Explicitly typed
       fontFamily: "Roboto",
     },
+    h4: {
+      fontSize: 18,
+      fontWeight: "700" as TextStyle["fontWeight"], // Explicitly typed
+      fontFamily: "Roboto",
+    },
     body1: {
       fontSize: 16,
       fontWeight: "400" as TextStyle["fontWeight"], // Explicitly typed

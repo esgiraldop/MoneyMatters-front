@@ -8,6 +8,13 @@ import { BudgetsTab } from "../components/allTransactions/budgets-tab.component"
 import { TransactionsTab } from "../components/allTransactions/transactions-tab.component";
 import { TransactionsTabBar } from "../components/allTransactions/transactions-tab-bar.component";
 import { getCurrentDate } from "../utilities/dates.utility";
+import { RootStackParamList } from "../interfaces";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+export type AllTransactionsScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "AllTransactions"
+>;
 
 export const AllTransactionsScreen = () => {
   const [index, setIndex] = useState(0);

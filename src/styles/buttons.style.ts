@@ -51,6 +51,7 @@ export const buttonStyle = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 50,
+    marginRight: 5,
   },
 
   // Combined Buttons
