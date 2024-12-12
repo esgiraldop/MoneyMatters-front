@@ -13,7 +13,8 @@ export const theme = {
     error: "#D72A2A",
     success: "#4BB543",
     warning: "#F17300",
-    transparent: "#00000080",
+    transparentDark: "#00000080",
+    transparent: "#00000000",
   },
   typography: {
     fontFamily: "Roboto",

@@ -144,14 +144,14 @@ export const containerStyles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: theme.colors.transparent,
+    backgroundColor: theme.colors.transparentDark,
   },
   modalView: {
     backgroundColor: theme.colors.backgroundLight,
     borderRadius: theme.spacing.small,
     padding: theme.spacing.large,
     alignItems: "center",
-    shadowColor: theme.colors.borderColor,
+    shadowColor: theme.colors.backgroundLight,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -172,5 +172,12 @@ export const containerStyles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  searchBarModal: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "flex-end",
+    backgroundColor: theme.colors.transparent,
+    marginTop: -110,
   },
 });

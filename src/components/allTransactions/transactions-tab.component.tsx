@@ -69,7 +69,7 @@ export const TransactionsTab = () => {
           </IconButton>
           <Modal
             visible={isSearchModalVisible}
-            transparent
+            transparent={true}
             animationType="fade"
             onRequestClose={toggleSearchModal}
           >
@@ -79,14 +79,18 @@ export const TransactionsTab = () => {
                 toggleSearchModal();
               }}
             >
-              <View style={containerStyles.modalCenteredView}>
+              <View style={containerStyles.searchBarModal}>
                 <TouchableWithoutFeedback>
-                  <View style={containerStyles.modalView}>
+                  <View style={[containerStyles.modalView, { padding: 0 }]}>
                     <SearchBar
-                      containerStyle={containerStyles.searchBarContainer}
-                      inputContainerStyle={
-                        containerStyles.searchBarInputContainer
-                      }
+                      containerStyle={[
+                        containerStyles.searchBarContainer,
+                        containerStyles.greenLoud,
+                      ]}
+                      inputContainerStyle={[
+                        containerStyles.searchBarInputContainer,
+                        containerStyles.greenLoud,
+                      ]}
                       placeholder="Search..."
                       inputStyle={containerStyles.inputField}
                       placeholderTextColor={theme.colors.textSecondary}
