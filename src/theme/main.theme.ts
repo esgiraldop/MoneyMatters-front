@@ -29,7 +29,7 @@ export const theme = {
     },
     h3: {
       fontSize: 20,
-      fontWeight: "600" as TextStyle["fontWeight"], // Explicitly typed
+      fontWeight: "700" as TextStyle["fontWeight"], // Explicitly typed
       fontFamily: "Roboto",
     },
     body1: {

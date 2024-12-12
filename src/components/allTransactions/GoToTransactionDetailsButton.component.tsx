@@ -4,32 +4,32 @@ import { TouchableOpacity } from "react-native";
 import { RootStackParamList } from "../../interfaces";
 import { useNavigation } from "@react-navigation/native";
 import { Text } from "react-native-elements";
-import ContactImage from "../common/contactImage.component";
-import { IContact } from "../../interfaces/transaction.interface";
+import { ITransaction } from "../../interfaces/transaction.interface";
 import { textStyles } from "../../styles/text.styles";
 import { buttonStyle } from "../../styles/buttons.style";
 
-interface IContactDetailsButton
-  extends Pick<IContact, "name" | "id" | "imageUri"> {}
+interface ITransactionDetailsButton
+  extends Pick<ITransaction, "name" | "id" | "imageUri"> {}
 
 export function GoToContacDetailsButton({
   name,
   id,
   imageUri,
-}: IContactDetailsButton) {
-  type ContactDetailsScreenNavigationProp = NativeStackNavigationProp<
+}: ITransactionDetailsButton) {
+  type TransactionDetailsScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
-    "ContactDetails"
+    "TransactionDetails"
   >;
 
-  const navigation = useNavigation<ContactDetailsScreenNavigationProp>();
+  const navigation = useNavigation<TransactionDetailsScreenNavigationProp>();
 
   return (
     <TouchableOpacity
-      style={buttonStyle.contacDetailsButton}
-      onPress={() => navigation.navigate("ContactDetails", { contactId: id })}
+      style={buttonStyle.transactionDetailsButton}
+      onPress={() =>
+        navigation.navigate("TransactionDetails", { transactionId: id })
+      }
     >
-      <ContactImage pictureUri={imageUri} />
       <Text style={textStyles.nameTextTouchableButton}>{name}</Text>
     </TouchableOpacity>
   );

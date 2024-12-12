@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { SectionList, Text, View } from "react-native";
-import { GoToContacDetailsButton } from "../components/allContacts";
+import { GoToContacDetailsButton } from "../components/allTransactions";
 import { ContactsService } from "../services/transactions.service";
 import { IContact } from "../interfaces/transaction.interface";
 import { useFocusEffect } from "@react-navigation/native";

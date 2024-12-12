@@ -1,8 +1,14 @@
 import { StyleSheet } from "react-native";
 import { theme } from "../theme/main.theme";
+import { Dimensions, View } from "react-native";
 
 export const containerStyles = StyleSheet.create({
   // General Containers
+  resetWidthContainer: {
+    margin: 0,
+    padding: 0,
+    width: Dimensions.get("window").width,
+  },
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
