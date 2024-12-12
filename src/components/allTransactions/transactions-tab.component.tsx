@@ -1,19 +1,13 @@
-import {
-  Keyboard,
-  Modal,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-elements";
 import { containerStyles, textStyles } from "../../styles";
 import { IconButton } from "../common";
-import { SearchBar } from "@rneui/themed";
 import { theme } from "../../theme/main.theme";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { AllTransactionsScreenNavigationProp } from "../../screens/all-transactions.screen";
 import { useState } from "react";
+import { SearchBarModal } from "./search-bar-modal-component";
 
 export const TransactionsTab = () => {
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
@@ -67,41 +61,10 @@ export const TransactionsTab = () => {
               color={theme.colors.textPrimary}
             />
           </IconButton>
-          <Modal
-            visible={isSearchModalVisible}
-            transparent={true}
-            animationType="fade"
-            onRequestClose={toggleSearchModal}
-          >
-            <TouchableWithoutFeedback
-              onPress={() => {
-                Keyboard.dismiss();
-                toggleSearchModal();
-              }}
-            >
-              <View style={containerStyles.searchBarModal}>
-                <TouchableWithoutFeedback>
-                  <View style={[containerStyles.modalView, { padding: 0 }]}>
-                    <SearchBar
-                      containerStyle={[
-                        containerStyles.searchBarContainer,
-                        containerStyles.greenLoud,
-                      ]}
-                      inputContainerStyle={[
-                        containerStyles.searchBarInputContainer,
-                        containerStyles.greenLoud,
-                      ]}
-                      placeholder="Search..."
-                      inputStyle={containerStyles.inputField}
-                      placeholderTextColor={theme.colors.textSecondary}
-                      onChangeText={() => {}}
-                      value={""}
-                    />
-                  </View>
-                </TouchableWithoutFeedback>
-              </View>
-            </TouchableWithoutFeedback>
-          </Modal>
+          <SearchBarModal
+            isSearchModalVisible={isSearchModalVisible}
+            toggleSearchModal={toggleSearchModal}
+          />
         </View>
       </View>
       {/* Add your budget list layout here */}
