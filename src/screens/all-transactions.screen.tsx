@@ -7,6 +7,7 @@ import { TabView, SceneMap } from "react-native-tab-view";
 import { BudgetsTab } from "../components/allTransactions/budgets-tab.component";
 import { TransactionsTab } from "../components/allTransactions/transactions-tab.component";
 import { TransactionsTabBar } from "../components/allTransactions/transactions-tab-bar.component";
+import { getCurrentDate } from "../utilities/dates.utility";
 
 export const AllTransactionsScreen = () => {
   const [index, setIndex] = useState(0);
@@ -37,6 +38,7 @@ export const AllTransactionsScreen = () => {
         <Text style={textStyles.textBody2}>
           You have spent 40% of your budget this month
         </Text>
+        <Text style={textStyles.textBody2}>{getCurrentDate()}</Text>
       </View>
       <TabView
         navigationState={{ index, routes }}
