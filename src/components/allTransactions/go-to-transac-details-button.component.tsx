@@ -44,9 +44,17 @@ export function GoToTransactionDetailsButton({
         <Text style={textStyles.textBody2}>{formatDate(transactionDate)}</Text>
       </View>
       <View style={styles.textBox}>
-        <Text style={textStyles.textBody2}>Name: {trimText(name)}</Text>
         <Text style={textStyles.textBody2}>
-          Category: {trimText(category.name, 14)}
+          <Text style={[textStyles.textBody2, textStyles.textBold]}>
+            Name:{" "}
+          </Text>
+          {trimText(name)}
+        </Text>
+        <Text style={textStyles.textBody2}>
+          <Text style={[textStyles.textBody2, textStyles.textBold]}>
+            Category:{" "}
+          </Text>
+          {trimText(category.name, 14)}
         </Text>
       </View>
     </TouchableOpacity>
