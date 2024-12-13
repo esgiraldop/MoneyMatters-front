@@ -5,11 +5,11 @@ export interface ITransaction {
   id: string;
   name: string;
   amount: number;
-  description: string;
+  description?: string;
   transactionDate: Date;
-  isActive: boolean;
-  budget: IBudget;
-  category: ICategory;
+  isActive?: boolean;
+  budget?: IBudget;
+  category?: ICategory;
 }
 
 export interface IUpdateTransaction extends Partial<ITransaction> {}
