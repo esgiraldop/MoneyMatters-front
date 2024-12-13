@@ -126,7 +126,7 @@ function LoginScreen({
                     color={theme.colors.textPrimary}
                   />
                 ) : (
-                  <Text style={textStyles.buttonText}>Sign in</Text>
+                  <Text style={textStyles.darkButtonText}>Sign in</Text>
                 )}
               </TouchableOpacity>
             </View>

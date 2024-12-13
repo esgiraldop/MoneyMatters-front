@@ -32,14 +32,14 @@ export const buttonStyle = StyleSheet.create({
   },
 
   // Specific Button Styles
-  contactDetailsButton: {
+  transactionDetailsButton: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
     padding: theme.spacing.medium,
     marginBottom: theme.spacing.small,
     borderRadius: 8,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.backgroundLight,
     elevation: 1,
     shadowColor: theme.colors.textSecondary,
     shadowOffset: { width: 0, height: 2 },

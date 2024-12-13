@@ -126,7 +126,7 @@ export function RegistrationScreen(): React.JSX.Element {
                     color={theme.colors.textPrimary}
                   />
                 ) : (
-                  <Text style={textStyles.buttonText}>Register</Text>
+                  <Text style={textStyles.darkButtonText}>Register</Text>
                 )}
               </TouchableOpacity>
             </View>

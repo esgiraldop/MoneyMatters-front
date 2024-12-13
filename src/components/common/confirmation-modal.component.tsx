@@ -85,7 +85,7 @@ export const ConfirmationModal = <T,>({
                   color={theme.colors.textPrimary}
                 />
               ) : (
-                <Text style={textStyles.buttonText}>Accept</Text>
+                <Text style={textStyles.darkButtonText}>Accept</Text>
               )}
             </TouchableOpacity>
             {requiresCancel && (
@@ -93,7 +93,7 @@ export const ConfirmationModal = <T,>({
                 style={buttonStyle.button5}
                 onPress={handleClose}
               >
-                <Text style={textStyles.buttonText}>Cancel</Text>
+                <Text style={textStyles.darkButtonText}>Cancel</Text>
               </TouchableOpacity>
             )}
           </View>

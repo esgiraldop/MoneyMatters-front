@@ -5,9 +5,25 @@ import { useNavigation } from "@react-navigation/native";
 import { AllTransactionsScreenNavigationProp } from "../../screens/all-transactions.screen";
 import { useState } from "react";
 import { TabHeader } from "./tab-header.component";
+import {
+  GoToTransactionDetailsButton,
+  ITransactionData,
+  TtransactionData,
+} from "./go-to-transac-details-button.component";
 
 export const TransactionsTab = () => {
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
+
+  const transactionData: TtransactionData = {
+    id: "1",
+    name: "Test transaction data",
+    amount: 10000,
+    transactionDate: new Date(),
+    category: {
+      id: 1,
+      name: "category test",
+    },
+  };
 
   return (
     <View style={tabStyles.headerTabBar}>
@@ -17,6 +33,7 @@ export const TransactionsTab = () => {
         Your expenses
       </TabHeader>
       {/* Add your budget list layout here */}
+      <GoToTransactionDetailsButton transactionData={transactionData} />
     </View>
   );
 };

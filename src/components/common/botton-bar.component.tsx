@@ -49,7 +49,7 @@ const BottomBar = ({
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={onHomePress}>
         <Icon name="home-outline" size={25} color={theme.colors.textPrimary} />
-        <Text style={styles.buttonText}>Home</Text>
+        <Text style={styles.darkButtonText}>Home</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={onSummaryPress}>
         <Icon
@@ -57,7 +57,7 @@ const BottomBar = ({
           size={25}
           color={theme.colors.textPrimary}
         />
-        <Text style={styles.buttonText}>Summary</Text>
+        <Text style={styles.darkButtonText}>Summary</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={handleLogout}>
         <Icon
@@ -65,7 +65,7 @@ const BottomBar = ({
           size={25}
           color={theme.colors.textPrimary}
         />
-        <Text style={styles.buttonText}>Logout</Text>
+        <Text style={styles.darkButtonText}>Logout</Text>
       </TouchableOpacity>
     </View>
   );
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
   },
-  buttonText: {
+  darkButtonText: {
     color: theme.colors.textPrimary,
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.body1.fontSize,
