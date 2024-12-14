@@ -122,7 +122,7 @@ export const textStyles = StyleSheet.create({
   sectionHeader: {
     fontSize: theme.typography.h2.fontSize,
     fontWeight: theme.typography.h2.fontWeight,
-    backgroundColor: theme.colors.backgroundLighter,
+    backgroundColor: theme.colors.borderColor,
     color: theme.colors.textPrimary,
     padding: theme.spacing.small,
   },

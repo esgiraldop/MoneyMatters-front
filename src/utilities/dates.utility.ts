@@ -2,7 +2,7 @@ interface IMonthDict<T> {
   [Key: string]: T;
 }
 
-const monthDict: IMonthDict<string> = {
+export const monthDict: IMonthDict<string> = {
   "01": "January",
   "02": "February",
   "03": "March",

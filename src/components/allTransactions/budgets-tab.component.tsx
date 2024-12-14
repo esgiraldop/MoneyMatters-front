@@ -1,11 +1,67 @@
-import { View } from "react-native";
+import { SectionList, View } from "react-native";
 import { TabHeader } from "./tab-header.component";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { AllTransactionsScreenNavigationProp } from "../../screens/all-transactions.screen";
 import { tabStyles } from "./transactions-tab.component";
+import { useCallback, useState } from "react";
+import { IBudget } from "../../interfaces/budget.interface";
+import { budgetData } from "../../server/dummy-budgets";
+import { groupBy } from "lodash";
+import { GoToBudgetDetailsButton } from "./go-to-budget-details-button.component";
+import { Text } from "react-native-elements";
+import { textStyles } from "../../styles";
+import { getCurrentDate, monthDict } from "../../utilities/dates.utility";
 
 export const BudgetsTab = () => {
+  const [budgets, setBudgets] = useState<IBudget[]>([]);
+  const [filteredBudgets, setFilteredBudgets] = useState<IBudget[]>([]);
+
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
+
+  useFocusEffect(
+    useCallback(() => {
+      setBudgets(budgetData);
+      setFilteredBudgets(budgetData);
+    }, [])
+  );
+
+  const groupedBudgetsByDate = useCallback(() => {
+    const grouped = groupBy(filteredBudgets, (budget) =>
+      new Date(budget.startDate).toDateString()
+    );
+
+    return Object.entries(grouped)
+      .sort(([a], [b]) => new Date(b).getTime() - new Date(a).getTime()) // Sort by date
+      .map(([date, budgetsInfo]) => {
+        // Getting current budget month and year
+        const splitDate = date.split(" ");
+        const year = splitDate[splitDate.length - 1];
+        const month = splitDate[1];
+
+        // Getting current month and year
+        const currentDate = getCurrentDate().split(" ");
+        const currentYear = currentDate[currentDate.length - 1];
+        const currentMonth = currentDate[0].slice(0, 3);
+
+        if (year === currentYear) {
+          if (month === currentMonth) {
+            return {
+              title: "This month",
+              data: budgetsInfo,
+            };
+          }
+          return {
+            title: month,
+            data: budgetsInfo,
+          };
+        }
+
+        return {
+          title: `${month}, ${year}`,
+          data: budgetsInfo,
+        };
+      });
+  }, [filteredBudgets]);
 
   return (
     <View style={tabStyles.headerTabBar}>
@@ -14,7 +70,14 @@ export const BudgetsTab = () => {
       >
         Your budgets
       </TabHeader>
-      {/* Add your budget list layout here */}
+      <SectionList
+        sections={groupedBudgetsByDate()}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <GoToBudgetDetailsButton budgetData={item} />}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={textStyles.sectionHeader}>{title}</Text>
+        )}
+      />
     </View>
   );
 };

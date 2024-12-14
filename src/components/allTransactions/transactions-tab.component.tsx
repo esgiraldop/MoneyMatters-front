@@ -5,14 +5,11 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { AllTransactionsScreenNavigationProp } from "../../screens/all-transactions.screen";
 import { useCallback, useState } from "react";
 import { TabHeader } from "./tab-header.component";
-import {
-  GoToTransactionDetailsButton,
-  ITransactionData,
-  TtransactionData,
-} from "./go-to-transac-details-button.component";
+import { GoToTransactionDetailsButton } from "./go-to-transac-details-button.component";
 import { Text } from "react-native-elements";
 import { ITransaction } from "../../interfaces/transaction.interface";
 import { groupBy } from "lodash";
+import { transactionData } from "../../server/dummy-transactions";
 
 export const TransactionsTab = () => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
@@ -24,59 +21,6 @@ export const TransactionsTab = () => {
 
   useFocusEffect(
     useCallback(() => {
-      const transactionData: ITransaction[] = [
-        {
-          id: "1",
-          name: "Test #1",
-          amount: 10000,
-          transactionDate: new Date("2024-12-12"),
-          category: {
-            id: 1,
-            name: "category test",
-          },
-        },
-        {
-          id: "2",
-          name: "Test #2",
-          amount: 11500,
-          transactionDate: new Date("2024-12-12"),
-          category: {
-            id: 1,
-            name: "category test",
-          },
-        },
-        {
-          id: "3",
-          name: "Test # 3",
-          amount: 150000,
-          transactionDate: new Date("2024-12-10"),
-          category: {
-            id: 2,
-            name: "cat test #2",
-          },
-        },
-        {
-          id: "4",
-          name: "Test # 4",
-          amount: 6700,
-          transactionDate: new Date("2024-12-10"),
-          category: {
-            id: 2,
-            name: "cat test #5",
-          },
-        },
-        {
-          id: "5",
-          name: "Test # 5",
-          amount: 6700,
-          transactionDate: new Date("2024-12-10"),
-          category: {
-            id: 2,
-            name: "cat test #5",
-          },
-        },
-      ];
-
       setTransactions(transactionData);
       setFilteredTransactions(transactionData);
     }, [])
@@ -88,9 +32,9 @@ export const TransactionsTab = () => {
     );
 
     return Object.entries(grouped)
-      .sort(([a], [b]) => new Date(a).getTime() - new Date(b).getTime()) // Sort by date
+      .sort(([a], [b]) => new Date(b).getTime() - new Date(a).getTime()) // Sort by date
       .map(([date, contactsInfo]) => ({
-        title: date, // Use the date as the title
+        title: date,
         data: contactsInfo,
       }));
   }, [filteredTransactions]);
