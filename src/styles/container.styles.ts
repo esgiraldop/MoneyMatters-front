@@ -25,6 +25,12 @@ export const containerStyles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     width: "100%",
   },
+  centeredContainerLightBc: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: theme.colors.backgroundLight,
+    width: "100%",
+  },
   paddedContainer: {
     padding: theme.spacing.medium,
     backgroundColor: theme.colors.background,
