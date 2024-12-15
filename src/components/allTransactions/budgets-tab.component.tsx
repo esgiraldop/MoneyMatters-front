@@ -10,7 +10,7 @@ import { groupBy } from "lodash";
 import { GoToBudgetDetailsButton } from "./go-to-budget-details-button.component";
 import { Text } from "react-native-elements";
 import { textStyles } from "../../styles";
-import { getCurrentDate, monthDict } from "../../utilities/dates.utility";
+import { getCurrentDate } from "../../utilities/dates.utility";
 
 export const BudgetsTab = () => {
   const [budgets, setBudgets] = useState<IBudget[]>([]);
