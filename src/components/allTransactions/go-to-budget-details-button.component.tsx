@@ -80,6 +80,7 @@ export function GoToBudgetDetailsButton({ budgetData }: IBudgetData) {
           },
         ]}
       >
+        <Text style={textStyles.textBody2}>You have spent 50%</Text>
         <BarChart
           stackData={stackData}
           horizontal
@@ -96,7 +97,7 @@ export function GoToBudgetDetailsButton({ budgetData }: IBudgetData) {
           hideOrigin={true}
           isAnimated
           shiftX={-60}
-          shiftY={-10}
+          shiftY={-30}
         />
       </View>
     </TouchableOpacity>
