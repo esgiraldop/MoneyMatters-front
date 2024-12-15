@@ -7,30 +7,30 @@ import {
   IBudgetContext,
 } from "../../screens/all-transactions.screen";
 import { tabStyles } from "./transactions-tab.component";
-import { useCallback, useContext, useState } from "react";
-import { IBudget } from "../../interfaces/budget.interface";
+import { useCallback, useContext } from "react";
 import { budgetData } from "../../server/dummy-budgets";
 import { groupBy } from "lodash";
 import { GoToBudgetDetailsButton } from "./go-to-budget-details-button.component";
 import { Text } from "react-native-elements";
-import { textStyles } from "../../styles";
+import { containerStyles, textStyles } from "../../styles";
 import { getCurrentDate } from "../../utilities/dates.utility";
+import { Loader } from "../common";
 
 export const BudgetsTab = () => {
-  const [budgets, setBudgets] = useState<IBudget[]>([]);
-  const { filteredBudgets, setFilteredBudgets } =
-    useContext<IBudgetContext>(BudgetContext);
-
-  console.log("filteredBudgets from budget tab: ", filteredBudgets);
+  const {
+    filteredBudgets,
+    setFilteredBudgets,
+    errorLoadingBudgets,
+    isBudgetLoading,
+  } = useContext<IBudgetContext>(BudgetContext);
 
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
 
-  useFocusEffect(
-    useCallback(() => {
-      setBudgets(budgetData);
-      setFilteredBudgets(budgetData);
-    }, [])
-  );
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     setFilteredBudgets(budgetData);
+  //   }, [filteredBudgets])
+  // );
 
   const groupedBudgetsByDate = useCallback(() => {
     const grouped = groupBy(filteredBudgets, (budget) =>
@@ -77,14 +77,28 @@ export const BudgetsTab = () => {
       >
         Your budgets
       </TabHeader>
-      <SectionList
-        sections={groupedBudgetsByDate()}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <GoToBudgetDetailsButton budgetData={item} />}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={textStyles.sectionHeader}>{title}</Text>
-        )}
-      />
+      {isBudgetLoading ? (
+        <Loader />
+      ) : errorLoadingBudgets ? (
+        <Text style={textStyles.textError}>Error loading budgets</Text>
+      ) : filteredBudgets && filteredBudgets.length < 1 ? (
+        <View style={[containerStyles.centeredContainerLightBc, { flex: 1 }]}>
+          <Text style={[textStyles.textH3, textStyles.textSecondary]}>
+            Please add a budget to start.
+          </Text>
+        </View>
+      ) : (
+        <SectionList
+          sections={groupedBudgetsByDate()}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <GoToBudgetDetailsButton budgetData={item} />
+          )}
+          renderSectionHeader={({ section: { title } }) => (
+            <Text style={textStyles.sectionHeader}>{title}</Text>
+          )}
+        />
+      )}
     </View>
   );
 };

@@ -23,11 +23,15 @@ export type AllTransactionsScreenNavigationProp = NativeStackNavigationProp<
 export interface IBudgetContext {
   filteredBudgets: IBudget[] | null;
   setFilteredBudgets: (filteredBudgets: IBudget[]) => void | (() => undefined);
+  errorLoadingBudgets: boolean | null;
+  isBudgetLoading: boolean | null;
 }
 
 export const BudgetContext = createContext<IBudgetContext>({
   filteredBudgets: null,
   setFilteredBudgets: () => undefined,
+  errorLoadingBudgets: null,
+  isBudgetLoading: null,
 });
 
 export const AllTransactionsScreen = () => {
@@ -110,7 +114,14 @@ export const AllTransactionsScreen = () => {
           )}
         </View>
       )}
-      <BudgetContext.Provider value={{ filteredBudgets, setFilteredBudgets }}>
+      <BudgetContext.Provider
+        value={{
+          filteredBudgets,
+          setFilteredBudgets,
+          errorLoadingBudgets,
+          isBudgetLoading,
+        }}
+      >
         <TabView
           navigationState={{ index, routes }}
           renderScene={renderScene}
