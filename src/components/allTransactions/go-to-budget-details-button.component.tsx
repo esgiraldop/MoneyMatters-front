@@ -9,6 +9,8 @@ import { textStyles } from "../../styles/text.styles";
 import { buttonStyle } from "../../styles/buttons.style";
 import { formatPrice } from "../../utilities/format-price.utility";
 import { trimText } from "../../utilities/trim-text.utility";
+import { BarChart } from "react-native-gifted-charts";
+import { theme } from "../../theme/main.theme";
 
 export type TbudgetData = Omit<IBudget, "isDeleted" | "isGeneral">;
 
@@ -18,6 +20,29 @@ export interface IBudgetData {
 
 export function GoToBudgetDetailsButton({ budgetData }: IBudgetData) {
   const { name, id, amount, budget_id, startDate, endDate } = budgetData;
+
+  const stackData = [
+    {
+      stacks: [
+        {
+          value: 60,
+          color: theme.colors.error,
+          marginBottom: 0,
+          onPress: () => console.log("You pressed red"),
+          borderBottomLeftRadius: 5,
+          borderBottomRightRadius: 5,
+        },
+        {
+          value: 40,
+          color: theme.colors.success,
+          marginBottom: 0,
+          onPress: () => console.log("You pressed green"),
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5,
+        },
+      ],
+    },
+  ];
 
   type BudgetDetailsScreenNavigationProp = NativeStackNavigationProp<
     RootStackParamList,
@@ -47,8 +72,32 @@ export function GoToBudgetDetailsButton({ budgetData }: IBudgetData) {
           {/*TODO: subtract transations in every budget's group*/}
         </Text>
       </View>
-      <View style={styles.textBox}>
-        <Text style={textStyles.textH3Dark}>(Barchart here)</Text>
+      <View
+        style={[
+          styles.textBox,
+          {
+            height: 100,
+          },
+        ]}
+      >
+        <BarChart
+          stackData={stackData}
+          horizontal
+          width={150}
+          height={50}
+          maxValue={100}
+          // noOfSections={2}
+          // stepValue={50}
+          // parentWidth={200}
+          barWidth={50}
+          trimYAxisAtTop={true}
+          spacing={10}
+          hideAxesAndRules={true}
+          hideOrigin={true}
+          isAnimated
+          shiftX={-60}
+          shiftY={-10}
+        />
       </View>
     </TouchableOpacity>
   );
