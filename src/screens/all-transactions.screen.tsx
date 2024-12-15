@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import { Dimensions, View } from "react-native";
 import { Text } from "react-native-elements";
 import { containerStyles } from "../styles/container.styles";
@@ -13,11 +13,22 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useBudgets } from "../hooks/use-budgets.hook";
 import { Loader } from "../components";
 import { formatPrice } from "../utilities/format-price.utility";
+import { IBudget } from "../interfaces/budget.interface";
 
 export type AllTransactionsScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   "AllTransactions"
 >;
+
+export interface IBudgetContext {
+  filteredBudgets: IBudget[] | null;
+  setFilteredBudgets: (filteredBudgets: IBudget[]) => void | (() => undefined);
+}
+
+export const BudgetContext = createContext<IBudgetContext>({
+  filteredBudgets: null,
+  setFilteredBudgets: () => undefined,
+});
 
 export const AllTransactionsScreen = () => {
   const [index, setIndex] = useState(0);
@@ -33,15 +44,11 @@ export const AllTransactionsScreen = () => {
 
   const {
     budgets,
-    setBudgets,
     parentBudget,
-    setParentBudget,
     filteredBudgets, //TODO: Give it a use to this
     setFilteredBudgets, //TODO: Give it a use to this
     errorLoadingBudgets,
-    setErrorLoadingBudgets,
     isBudgetLoading,
-    setIsBudgetLoading,
   } = useBudgets();
 
   return (
@@ -103,15 +110,17 @@ export const AllTransactionsScreen = () => {
           )}
         </View>
       )}
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{
-          width: Dimensions.get("window").width,
-        }}
-        renderTabBar={TransactionsTabBar}
-      />
+      <BudgetContext.Provider value={{ filteredBudgets, setFilteredBudgets }}>
+        <TabView
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          onIndexChange={setIndex}
+          initialLayout={{
+            width: Dimensions.get("window").width,
+          }}
+          renderTabBar={TransactionsTabBar}
+        />
+      </BudgetContext.Provider>
     </View>
   );
 };

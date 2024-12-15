@@ -21,6 +21,7 @@ export function useBudgets() {
         const BudgetsResponse = await BudgetsService.getAll(params);
         if (BudgetsResponse?.data) {
           setBudgets(BudgetsResponse?.data);
+          setFilteredBudgets(BudgetsResponse?.data); //TODO: This should change when Im implementing the filtering
           setParentBudget(getParentBudget(BudgetsResponse?.data));
           setIsBudgetLoading(false);
           setErrorLoadingBudgets(false);

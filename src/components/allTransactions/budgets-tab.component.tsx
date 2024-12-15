@@ -1,9 +1,13 @@
 import { SectionList, View } from "react-native";
 import { TabHeader } from "./tab-header.component";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { AllTransactionsScreenNavigationProp } from "../../screens/all-transactions.screen";
+import {
+  AllTransactionsScreenNavigationProp,
+  BudgetContext,
+  IBudgetContext,
+} from "../../screens/all-transactions.screen";
 import { tabStyles } from "./transactions-tab.component";
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { IBudget } from "../../interfaces/budget.interface";
 import { budgetData } from "../../server/dummy-budgets";
 import { groupBy } from "lodash";
@@ -14,7 +18,10 @@ import { getCurrentDate } from "../../utilities/dates.utility";
 
 export const BudgetsTab = () => {
   const [budgets, setBudgets] = useState<IBudget[]>([]);
-  const [filteredBudgets, setFilteredBudgets] = useState<IBudget[]>([]);
+  const { filteredBudgets, setFilteredBudgets } =
+    useContext<IBudgetContext>(BudgetContext);
+
+  console.log("filteredBudgets from budget tab: ", filteredBudgets);
 
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
 
