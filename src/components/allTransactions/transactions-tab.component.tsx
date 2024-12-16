@@ -13,7 +13,7 @@ import { GoToTransactionDetailsButton } from "./go-to-transac-details-button.com
 import { Text } from "react-native-elements";
 import { groupBy } from "lodash";
 import { useTransactions } from "../../hooks/use-transactions.hook";
-import { Loader } from "../common";
+import { ConfirmationModal, Loader } from "../common";
 import { SearchBarModal } from "./search-bar-modal-component";
 
 export const TransactionsTab = () => {
@@ -29,17 +29,36 @@ export const TransactionsTab = () => {
   } = useTransactions();
 
   const {
+    budgets,
+    setBudgets,
     filteredBudgets,
     setFilteredBudgets,
     errorLoadingBudgets,
     isBudgetLoading,
   } = useContext<IBudgetContext>(BudgetContext);
 
+  const [isAddTransacWarningModalOpen, setIsAddTransacWarningModalOpen] =
+    useState<boolean>(false);
+  const [isSearchTransacWarningModalOpen, setIsSearchTransacWarningModalOpen] =
+    useState<boolean>(false);
+
   const [isSearchModalVisible, setSearchModalVisible] =
     useState<boolean>(false);
 
   const toggleSearchModal = () => {
-    setSearchModalVisible(!isSearchModalVisible);
+    if (!transactions || transactions.length < 1) {
+      setIsSearchTransacWarningModalOpen(!isSearchTransacWarningModalOpen);
+    } else {
+      setSearchModalVisible(!isSearchModalVisible);
+    }
+  };
+
+  const addTransactionAction = () => {
+    if (!budgets || budgets.length < 1) {
+      setIsAddTransacWarningModalOpen(!isAddTransacWarningModalOpen);
+    } else {
+      navigation.navigate("CreateTransaction");
+    }
   };
 
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
@@ -60,7 +79,7 @@ export const TransactionsTab = () => {
   return (
     <View style={[tabStyles.headerTabBar]}>
       <TabHeader
-        plusIconButtonAction={() => navigation.navigate("CreateTransaction")}
+        plusIconButtonAction={addTransactionAction}
         searchIconButtonAction={toggleSearchModal}
       >
         Your expenses
@@ -97,6 +116,26 @@ export const TransactionsTab = () => {
         isSearchModalVisible={isSearchModalVisible}
         toggleSearchModal={toggleSearchModal}
       />
+      <ConfirmationModal
+        confirmationModalVisible={isAddTransacWarningModalOpen}
+        setConfirmationModalVisible={setIsAddTransacWarningModalOpen}
+        handleAccept={() =>
+          setIsAddTransacWarningModalOpen(!isAddTransacWarningModalOpen)
+        }
+      >
+        Please create a budget first for the current month to be able to create
+        an expense
+      </ConfirmationModal>
+      <ConfirmationModal
+        confirmationModalVisible={isSearchTransacWarningModalOpen}
+        setConfirmationModalVisible={setIsSearchTransacWarningModalOpen}
+        handleAccept={() =>
+          setIsSearchTransacWarningModalOpen(!isSearchTransacWarningModalOpen)
+        }
+      >
+        Please create some transactions first in order to be able to search them
+        by name
+      </ConfirmationModal>
     </View>
   );
 };

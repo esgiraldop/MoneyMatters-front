@@ -76,7 +76,12 @@ export const buttonStyle = StyleSheet.create({
     marginLeft: theme.spacing.small,
   },
   acceptButton: {
-    backgroundColor: theme.colors.accent,
-    marginTop: theme.spacing.small,
+    backgroundColor: theme.colors.background,
+    padding: theme.spacing.small,
+    margin: theme.spacing.small,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    width: 100,
   },
 });

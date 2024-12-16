@@ -13,7 +13,7 @@ interface IConfirmationModal<T> {
   confirmationModalVisible: T;
   setConfirmationModalVisible: (confirmationModalVisible: T) => void;
   handleAccept: () => void;
-  requiresCancel: boolean;
+  requiresCancel?: boolean;
   handleCancel?: () => void;
   isSubmitting?: boolean | null;
 }
@@ -36,9 +36,9 @@ export const ConfirmationModal = <T,>({
   confirmationModalVisible,
   setConfirmationModalVisible,
   handleAccept,
-  requiresCancel,
+  requiresCancel = false,
   handleCancel = () => null,
-  isSubmitting,
+  isSubmitting = null,
 }: IConfirmationModal<T>): React.JSX.Element => {
   const evalConfirmationModalVisible = (): boolean => {
     if (typeof confirmationModalVisible === "boolean") {
@@ -71,12 +71,12 @@ export const ConfirmationModal = <T,>({
       visible={evalConfirmationModalVisible()}
       onRequestClose={handleClose}
     >
-      <View style={modalStyles.centeredView}>
-        <View style={modalStyles.modalView}>
+      <View style={containerStyles.modalCenteredView}>
+        <View style={containerStyles.modalView}>
           <Text style={textStyles.modalText}>{children}</Text>
-          <View style={containerStyles.complexButtonContainerLight}>
+          <View style={[containerStyles.centeredContainerLightBc]}>
             <TouchableOpacity
-              style={buttonStyle.button5}
+              style={buttonStyle.acceptButton}
               onPress={handleAccept}
             >
               {isSubmitting ? (
@@ -90,7 +90,7 @@ export const ConfirmationModal = <T,>({
             </TouchableOpacity>
             {requiresCancel && (
               <TouchableOpacity
-                style={buttonStyle.button5}
+                style={buttonStyle.cancelButton}
                 onPress={handleClose}
               >
                 <Text style={textStyles.darkButtonText}>Cancel</Text>

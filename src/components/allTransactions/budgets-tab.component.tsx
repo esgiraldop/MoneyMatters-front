@@ -13,7 +13,7 @@ import { GoToBudgetDetailsButton } from "./go-to-budget-details-button.component
 import { Text } from "react-native-elements";
 import { containerStyles, textStyles } from "../../styles";
 import { getCurrentDate } from "../../utilities/dates.utility";
-import { Loader } from "../common";
+import { ConfirmationModal, Loader } from "../common";
 import { getChildrenBudgets } from "../../screens/get-parent-budget.screen";
 import { SearchBarModal } from "./search-bar-modal-component";
 
@@ -30,8 +30,15 @@ export const BudgetsTab = () => {
   const [isSearchModalVisible, setSearchModalVisible] =
     useState<boolean>(false);
 
+  const [isSearchTransacWarningModalOpen, setIsSearchTransacWarningModalOpen] =
+    useState<boolean>(false);
+
   const toggleSearchModal = () => {
-    setSearchModalVisible(!isSearchModalVisible);
+    if (!budgets || budgets.length < 1) {
+      setIsSearchTransacWarningModalOpen(!isSearchTransacWarningModalOpen);
+    } else {
+      setSearchModalVisible(!isSearchModalVisible);
+    }
   };
 
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
@@ -115,6 +122,16 @@ export const BudgetsTab = () => {
         isSearchModalVisible={isSearchModalVisible}
         toggleSearchModal={toggleSearchModal}
       />
+      <ConfirmationModal
+        confirmationModalVisible={isSearchTransacWarningModalOpen}
+        setConfirmationModalVisible={setIsSearchTransacWarningModalOpen}
+        handleAccept={() =>
+          setIsSearchTransacWarningModalOpen(!isSearchTransacWarningModalOpen)
+        }
+      >
+        Please create some budgets first in order to be able to search them by
+        name
+      </ConfirmationModal>
     </View>
   );
 };

@@ -133,7 +133,7 @@ export const textStyles = StyleSheet.create({
     fontSize: theme.typography.body1.fontSize,
   },
   modalText: {
-    color: theme.colors.textPrimary,
+    color: theme.colors.textSecondary,
     fontSize: theme.typography.body1.fontSize,
     textAlign: "center",
   },
