@@ -124,6 +124,22 @@ export const containerStyles = StyleSheet.create({
     width: "95%",
     marginBottom: theme.spacing.medium,
   },
+  inputFieldDark: {
+    backgroundColor: theme.colors.accent,
+    padding: theme.spacing.small,
+    borderRadius: theme.spacing.small,
+    width: "95%",
+    marginBottom: theme.spacing.medium,
+  },
+  inputFieldDarkThicker: {
+    backgroundColor: theme.colors.accent,
+    padding: theme.spacing.small,
+    borderRadius: theme.spacing.small,
+    width: "95%",
+    marginBottom: theme.spacing.medium,
+    minHeight: 100,
+    textAlignVertical: "top",
+  },
 
   // Search Bar Containers
   searchBarContainer: {
