@@ -15,6 +15,7 @@ import { containerStyles, textStyles } from "../../styles";
 import { getCurrentDate } from "../../utilities/dates.utility";
 import { Loader } from "../common";
 import { getChildrenBudgets } from "../../screens/get-parent-budget.screen";
+import { SearchBarModal } from "./search-bar-modal-component";
 
 export const BudgetsTab = () => {
   const {
@@ -79,7 +80,6 @@ export const BudgetsTab = () => {
       <TabHeader
         plusIconButtonAction={() => navigation.navigate("CreateBudget")}
         searchIconButtonAction={toggleSearchModal}
-        isSearchModalVisible={isSearchModalVisible}
       >
         Your budgets
       </TabHeader>
@@ -111,6 +111,10 @@ export const BudgetsTab = () => {
           )}
         />
       )}
+      <SearchBarModal
+        isSearchModalVisible={isSearchModalVisible}
+        toggleSearchModal={toggleSearchModal}
+      />
     </View>
   );
 };

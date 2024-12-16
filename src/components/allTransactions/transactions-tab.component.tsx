@@ -14,6 +14,7 @@ import { Text } from "react-native-elements";
 import { groupBy } from "lodash";
 import { useTransactions } from "../../hooks/use-transactions.hook";
 import { Loader } from "../common";
+import { SearchBarModal } from "./search-bar-modal-component";
 
 export const TransactionsTab = () => {
   const {
@@ -61,7 +62,6 @@ export const TransactionsTab = () => {
       <TabHeader
         plusIconButtonAction={() => navigation.navigate("CreateTransaction")}
         searchIconButtonAction={toggleSearchModal}
-        isSearchModalVisible={isSearchModalVisible}
       >
         Your expenses
       </TabHeader>
@@ -93,6 +93,10 @@ export const TransactionsTab = () => {
           )}
         />
       )}
+      <SearchBarModal
+        isSearchModalVisible={isSearchModalVisible}
+        toggleSearchModal={toggleSearchModal}
+      />
     </View>
   );
 };

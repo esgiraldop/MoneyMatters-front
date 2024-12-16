@@ -10,14 +10,12 @@ import { SearchBarModal } from "./search-bar-modal-component";
 interface ITabHeader {
   plusIconButtonAction: () => void;
   searchIconButtonAction: () => void;
-  isSearchModalVisible: boolean;
   children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
 }
 
 export const TabHeader = ({
   plusIconButtonAction,
   searchIconButtonAction,
-  isSearchModalVisible,
   children,
 }: ITabHeader) => {
   return (
@@ -54,10 +52,6 @@ export const TabHeader = ({
             color={theme.colors.textPrimary}
           />
         </IconButton>
-        <SearchBarModal
-          isSearchModalVisible={isSearchModalVisible}
-          toggleSearchModal={searchIconButtonAction}
-        />
       </View>
     </View>
   );
