@@ -18,6 +18,8 @@ import { getChildrenBudgets } from "../../screens/get-parent-budget.screen";
 
 export const BudgetsTab = () => {
   const {
+    budgets,
+    setBudgets,
     filteredBudgets,
     setFilteredBudgets,
     errorLoadingBudgets,
@@ -76,10 +78,16 @@ export const BudgetsTab = () => {
         <Loader />
       ) : errorLoadingBudgets ? (
         <Text style={textStyles.textError}>Error loading budgets</Text>
-      ) : filteredBudgets && filteredBudgets.length < 1 ? (
+      ) : budgets && budgets.length < 1 ? (
         <View style={[containerStyles.centeredContainerLightBc, { flex: 1 }]}>
           <Text style={[textStyles.textH3, textStyles.textSecondary]}>
             Please add a budget to start.
+          </Text>
+        </View>
+      ) : filteredBudgets && filteredBudgets.length < 1 ? (
+        <View style={[containerStyles.centeredContainerLightBc, { flex: 1 }]}>
+          <Text style={[textStyles.textH3, textStyles.textSecondary]}>
+            No budgets could be found.
           </Text>
         </View>
       ) : (

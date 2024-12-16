@@ -2,29 +2,41 @@ import { SectionList, StyleSheet, View } from "react-native";
 import { containerStyles, textStyles } from "../../styles";
 import { theme } from "../../theme/main.theme";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { AllTransactionsScreenNavigationProp } from "../../screens/all-transactions.screen";
-import { useCallback, useState } from "react";
+import {
+  AllTransactionsScreenNavigationProp,
+  BudgetContext,
+  IBudgetContext,
+} from "../../screens/all-transactions.screen";
+import { useCallback, useContext, useState } from "react";
 import { TabHeader } from "./tab-header.component";
 import { GoToTransactionDetailsButton } from "./go-to-transac-details-button.component";
 import { Text } from "react-native-elements";
 import { ITransaction } from "../../interfaces/transaction.interface";
 import { groupBy } from "lodash";
 import { transactionData } from "../../server/dummy-transactions";
+import { useTransactions } from "../../hooks/use-transactions.hook";
+import { Loader } from "../common";
 
 export const TransactionsTab = () => {
-  const [transactions, setTransactions] = useState<ITransaction[]>([]);
-  const [filteredTransactions, setFilteredTransactions] = useState<
-    ITransaction[]
-  >([]);
+  const {
+    transactions,
+    setTransactions,
+    filteredTransactions,
+    setFilteredTransactions,
+    errorLoadingTransactions,
+    setErrorLoadingTransactions,
+    isLoadingTransaction,
+    setIsLoadingTransaction,
+  } = useTransactions();
+
+  const {
+    filteredBudgets,
+    setFilteredBudgets,
+    errorLoadingBudgets,
+    isBudgetLoading,
+  } = useContext<IBudgetContext>(BudgetContext);
 
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
-
-  useFocusEffect(
-    useCallback(() => {
-      setTransactions(transactionData);
-      setFilteredTransactions(transactionData);
-    }, [])
-  );
 
   const groupedTransactionsByDate = useCallback(() => {
     const grouped = groupBy(filteredTransactions, (transaction) =>
@@ -46,16 +58,34 @@ export const TransactionsTab = () => {
       >
         Your expenses
       </TabHeader>
-      <SectionList
-        sections={groupedTransactionsByDate()}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <GoToTransactionDetailsButton transactionData={item} />
-        )}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={textStyles.sectionHeader}>{title}</Text>
-        )}
-      />
+      {isLoadingTransaction ? (
+        <Loader />
+      ) : errorLoadingTransactions ? (
+        <Text style={textStyles.textError}>Error loading transactions</Text>
+      ) : transactions && transactions.length < 1 ? (
+        <View style={[containerStyles.centeredContainerLightBc, { flex: 1 }]}>
+          <Text style={[textStyles.textH3, textStyles.textSecondary]}>
+            Please add a transaction to start.
+          </Text>
+        </View>
+      ) : filteredTransactions && filteredTransactions.length < 1 ? (
+        <View style={[containerStyles.centeredContainerLightBc, { flex: 1 }]}>
+          <Text style={[textStyles.textH3, textStyles.textSecondary]}>
+            No transactions could be found.
+          </Text>
+        </View>
+      ) : (
+        <SectionList
+          sections={groupedTransactionsByDate()}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <GoToTransactionDetailsButton transactionData={item} />
+          )}
+          renderSectionHeader={({ section: { title } }) => (
+            <Text style={textStyles.sectionHeader}>{title}</Text>
+          )}
+        />
+      )}
     </View>
   );
 };

@@ -21,6 +21,8 @@ export type AllTransactionsScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 export interface IBudgetContext {
+  budgets: IBudget[] | null;
+  setBudgets: (budgets: IBudget[]) => void | (() => undefined);
   filteredBudgets: IBudget[] | null;
   setFilteredBudgets: (filteredBudgets: IBudget[]) => void | (() => undefined);
   errorLoadingBudgets: boolean | null;
@@ -28,6 +30,8 @@ export interface IBudgetContext {
 }
 
 export const BudgetContext = createContext<IBudgetContext>({
+  budgets: null,
+  setBudgets: () => undefined,
   filteredBudgets: null,
   setFilteredBudgets: () => undefined,
   errorLoadingBudgets: null,
@@ -48,6 +52,7 @@ export const AllTransactionsScreen = () => {
 
   const {
     budgets,
+    setBudgets,
     parentBudget,
     filteredBudgets, //TODO: Give it a use to this
     setFilteredBudgets, //TODO: Give it a use to this
@@ -116,6 +121,8 @@ export const AllTransactionsScreen = () => {
       )}
       <BudgetContext.Provider
         value={{
+          budgets,
+          setBudgets,
           filteredBudgets,
           setFilteredBudgets,
           errorLoadingBudgets,
