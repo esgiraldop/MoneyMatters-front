@@ -1,20 +1,20 @@
 import { SectionList, View } from "react-native";
 import { TabHeader } from "./tab-header.component";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import {
   AllTransactionsScreenNavigationProp,
   BudgetContext,
   IBudgetContext,
 } from "../../screens/all-transactions.screen";
 import { tabStyles } from "./transactions-tab.component";
-import { useCallback, useContext } from "react";
-import { budgetData } from "../../server/dummy-budgets";
+import { useCallback, useContext, useEffect } from "react";
 import { groupBy } from "lodash";
 import { GoToBudgetDetailsButton } from "./go-to-budget-details-button.component";
 import { Text } from "react-native-elements";
 import { containerStyles, textStyles } from "../../styles";
 import { getCurrentDate } from "../../utilities/dates.utility";
 import { Loader } from "../common";
+import { getChildrenBudgets } from "../../screens/get-parent-budget.screen";
 
 export const BudgetsTab = () => {
   const {
@@ -26,15 +26,10 @@ export const BudgetsTab = () => {
 
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
 
-  // useFocusEffect(
-  //   useCallback(() => {
-  //     setFilteredBudgets(budgetData);
-  //   }, [filteredBudgets])
-  // );
-
   const groupedBudgetsByDate = useCallback(() => {
-    const grouped = groupBy(filteredBudgets, (budget) =>
-      new Date(budget.startDate).toDateString()
+    const grouped = groupBy(
+      getChildrenBudgets(filteredBudgets), //Getting rid of parent budget
+      (budget) => new Date(budget.startDate).toDateString()
     );
 
     return Object.entries(grouped)

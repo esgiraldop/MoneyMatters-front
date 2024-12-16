@@ -19,13 +19,13 @@ export interface IBudgetData {
 }
 
 export function GoToBudgetDetailsButton({ budgetData }: IBudgetData) {
-  const { name, id, amount, budget_id, startDate, endDate } = budgetData;
+  const { name, id, amount, transactionsSum } = budgetData;
 
   const stackData = [
     {
       stacks: [
         {
-          value: 60,
+          value: Math.round((amount / (amount + transactionsSum)) * 100),
           color: theme.colors.error,
           marginBottom: 0,
           onPress: () => console.log("You pressed red"),
@@ -33,7 +33,9 @@ export function GoToBudgetDetailsButton({ budgetData }: IBudgetData) {
           borderBottomRightRadius: 5,
         },
         {
-          value: 40,
+          value: Math.round(
+            (transactionsSum / (amount + transactionsSum)) * 100
+          ),
           color: theme.colors.success,
           marginBottom: 0,
           onPress: () => console.log("You pressed green"),
@@ -80,16 +82,16 @@ export function GoToBudgetDetailsButton({ budgetData }: IBudgetData) {
           },
         ]}
       >
-        <Text style={textStyles.textBody2}>You have spent 50%</Text>
+        <Text style={textStyles.textBody2}>
+          You have spent{" "}
+          {Math.round((amount / (amount + transactionsSum)) * 100)}%
+        </Text>
         <BarChart
           stackData={stackData}
           horizontal
           width={150}
           height={50}
           maxValue={100}
-          // noOfSections={2}
-          // stepValue={50}
-          // parentWidth={200}
           barWidth={50}
           trimYAxisAtTop={true}
           spacing={10}
