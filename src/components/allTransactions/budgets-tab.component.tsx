@@ -7,7 +7,7 @@ import {
   IBudgetContext,
 } from "../../screens/all-transactions.screen";
 import { tabStyles } from "./transactions-tab.component";
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { groupBy } from "lodash";
 import { GoToBudgetDetailsButton } from "./go-to-budget-details-button.component";
 import { Text } from "react-native-elements";
@@ -25,6 +25,13 @@ export const BudgetsTab = () => {
     errorLoadingBudgets,
     isBudgetLoading,
   } = useContext<IBudgetContext>(BudgetContext);
+
+  const [isSearchModalVisible, setSearchModalVisible] =
+    useState<boolean>(false);
+
+  const toggleSearchModal = () => {
+    setSearchModalVisible(!isSearchModalVisible);
+  };
 
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
 
@@ -71,6 +78,8 @@ export const BudgetsTab = () => {
     <View style={tabStyles.headerTabBar}>
       <TabHeader
         plusIconButtonAction={() => navigation.navigate("CreateBudget")}
+        searchIconButtonAction={toggleSearchModal}
+        isSearchModalVisible={isSearchModalVisible}
       >
         Your budgets
       </TabHeader>

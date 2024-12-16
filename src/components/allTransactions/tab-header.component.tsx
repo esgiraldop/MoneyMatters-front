@@ -9,17 +9,17 @@ import { SearchBarModal } from "./search-bar-modal-component";
 
 interface ITabHeader {
   plusIconButtonAction: () => void;
+  searchIconButtonAction: () => void;
+  isSearchModalVisible: boolean;
   children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
 }
 
-export const TabHeader = ({ plusIconButtonAction, children }: ITabHeader) => {
-  const [isSearchModalVisible, setSearchModalVisible] =
-    useState<boolean>(false);
-
-  const toggleSearchModal = () => {
-    setSearchModalVisible(!isSearchModalVisible);
-  };
-
+export const TabHeader = ({
+  plusIconButtonAction,
+  searchIconButtonAction,
+  isSearchModalVisible,
+  children,
+}: ITabHeader) => {
   return (
     <View style={[containerStyles.spaceBetweenRow, styles.borderBottom]}>
       <View style={[containerStyles.containerLightBc]}>
@@ -45,7 +45,7 @@ export const TabHeader = ({ plusIconButtonAction, children }: ITabHeader) => {
         </IconButton>
         <IconButton
           size={40}
-          action={toggleSearchModal}
+          action={searchIconButtonAction}
           style={containerStyles.greenLoud}
         >
           <Icon
@@ -56,7 +56,7 @@ export const TabHeader = ({ plusIconButtonAction, children }: ITabHeader) => {
         </IconButton>
         <SearchBarModal
           isSearchModalVisible={isSearchModalVisible}
-          toggleSearchModal={toggleSearchModal}
+          toggleSearchModal={searchIconButtonAction}
         />
       </View>
     </View>

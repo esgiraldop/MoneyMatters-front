@@ -1,7 +1,7 @@
 import { SectionList, StyleSheet, View } from "react-native";
 import { containerStyles, textStyles } from "../../styles";
 import { theme } from "../../theme/main.theme";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import {
   AllTransactionsScreenNavigationProp,
   BudgetContext,
@@ -11,9 +11,7 @@ import { useCallback, useContext, useState } from "react";
 import { TabHeader } from "./tab-header.component";
 import { GoToTransactionDetailsButton } from "./go-to-transac-details-button.component";
 import { Text } from "react-native-elements";
-import { ITransaction } from "../../interfaces/transaction.interface";
 import { groupBy } from "lodash";
-import { transactionData } from "../../server/dummy-transactions";
 import { useTransactions } from "../../hooks/use-transactions.hook";
 import { Loader } from "../common";
 
@@ -36,6 +34,13 @@ export const TransactionsTab = () => {
     isBudgetLoading,
   } = useContext<IBudgetContext>(BudgetContext);
 
+  const [isSearchModalVisible, setSearchModalVisible] =
+    useState<boolean>(false);
+
+  const toggleSearchModal = () => {
+    setSearchModalVisible(!isSearchModalVisible);
+  };
+
   const navigation = useNavigation<AllTransactionsScreenNavigationProp>();
 
   const groupedTransactionsByDate = useCallback(() => {
@@ -55,6 +60,8 @@ export const TransactionsTab = () => {
     <View style={[tabStyles.headerTabBar]}>
       <TabHeader
         plusIconButtonAction={() => navigation.navigate("CreateTransaction")}
+        searchIconButtonAction={toggleSearchModal}
+        isSearchModalVisible={isSearchModalVisible}
       >
         Your expenses
       </TabHeader>
