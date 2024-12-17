@@ -111,12 +111,14 @@ export const containerStyles = StyleSheet.create({
   light: {
     backgroundColor: theme.colors.backgroundLight,
   },
-  //Background colors
   darkLighter: {
     backgroundColor: theme.colors.backgroundLighter,
   },
   greenLoud: {
     backgroundColor: theme.colors.borderColor,
+  },
+  greenAccent: {
+    backgroundColor: theme.colors.accent,
   },
 
   // Input fields

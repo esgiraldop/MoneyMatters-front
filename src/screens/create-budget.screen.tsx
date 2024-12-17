@@ -19,6 +19,7 @@ import { textStyles } from "../styles/text.styles";
 import { buttonStyle } from "../styles/buttons.style";
 import { budgetSchema } from "../schemas/budget.schema";
 import { useCategories } from "../hooks/use-categories.hook";
+import { DropdownCategories } from "../components/common/dropdown-categories.component";
 // import { CurrencyInput } from "../components/common/currency-input-field.component"; // This thing didn't work
 
 type CreateBudgetScreenProp = NativeStackNavigationProp<
@@ -42,7 +43,7 @@ export function CreateBudgetScreen(): React.JSX.Element {
     setErrorLoadingCategories,
     isCategoryLoading,
     setIsCategoryLoading,
-  } = useCategories();
+  } = useCategories(); //TODO: Create validators for categories
 
   const navigation = useNavigation<CreateBudgetScreenProp>();
 
@@ -102,7 +103,6 @@ export function CreateBudgetScreen(): React.JSX.Element {
                     {formikProps.errors.name}
                   </Text>
                 )}
-
                 <Text style={textStyles.textBody2}>Amount</Text>
                 <TextInput
                   style={[
@@ -125,9 +125,8 @@ export function CreateBudgetScreen(): React.JSX.Element {
                 {meta.touched && meta.error && (
                   <Text style={textStyles.textError}>{meta.error}</Text>
                 )} */}
-
                 <Text style={textStyles.textBody2}>Category</Text>
-                <TextInput
+                {/* <TextInput
                   style={[
                     textStyles.inputField,
                     containerStyles.inputFieldDark,
@@ -138,14 +137,14 @@ export function CreateBudgetScreen(): React.JSX.Element {
                   defaultValue={String(initialValues.category_id)}
                   placeholder="-- Select category --"
                   placeholderTextColor={theme.colors.textSecondary}
-                />
+                /> */}
+                <DropdownCategories categories={categories} />
                 {formikProps.touched.amount &&
                   formikProps.errors.category_id && (
                     <Text style={textStyles.textError}>
                       {formikProps.errors.category_id}
                     </Text>
                   )}
-
                 <Text style={textStyles.textBody2}>Description</Text>
                 <TextInput
                   style={[
@@ -166,7 +165,6 @@ export function CreateBudgetScreen(): React.JSX.Element {
                       {formikProps.errors.description}
                     </Text>
                   )}
-
                 <TouchableOpacity
                   style={buttonStyle.acceptButton}
                   onPress={() => formikProps.handleSubmit()}
