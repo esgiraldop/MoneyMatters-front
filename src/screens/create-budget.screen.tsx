@@ -18,6 +18,7 @@ import { containerStyles } from "../styles/container.styles";
 import { textStyles } from "../styles/text.styles";
 import { buttonStyle } from "../styles/buttons.style";
 import { budgetSchema } from "../schemas/budget.schema";
+import { useCategories } from "../hooks/use-categories.hook";
 // import { CurrencyInput } from "../components/common/currency-input-field.component"; // This thing didn't work
 
 type CreateBudgetScreenProp = NativeStackNavigationProp<
@@ -33,6 +34,15 @@ export interface ICreateBudgetForm
 
 export function CreateBudgetScreen(): React.JSX.Element {
   const { params } = useRoute<RouteProp<RootStackParamList, "CreateBudget">>();
+
+  const {
+    categories,
+    setCategories,
+    errorLoadingCategories,
+    setErrorLoadingCategories,
+    isCategoryLoading,
+    setIsCategoryLoading,
+  } = useCategories();
 
   const navigation = useNavigation<CreateBudgetScreenProp>();
 
