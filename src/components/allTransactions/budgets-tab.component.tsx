@@ -19,6 +19,7 @@ import { SearchBarModal } from "./search-bar-modal-component";
 
 export const BudgetsTab = () => {
   const {
+    parentBudget,
     budgets,
     setBudgets,
     filteredBudgets,
@@ -26,7 +27,6 @@ export const BudgetsTab = () => {
     errorLoadingBudgets,
     isBudgetLoading,
   } = useContext<IBudgetContext>(BudgetContext);
-
   const [isSearchModalVisible, setSearchModalVisible] =
     useState<boolean>(false);
 
@@ -85,7 +85,11 @@ export const BudgetsTab = () => {
   return (
     <View style={tabStyles.headerTabBar}>
       <TabHeader
-        plusIconButtonAction={() => navigation.navigate("CreateBudget")}
+        plusIconButtonAction={() =>
+          navigation.navigate("CreateBudget", {
+            parentBudgetId: parentBudget?.id,
+          })
+        }
         searchIconButtonAction={toggleSearchModal}
       >
         Your budgets

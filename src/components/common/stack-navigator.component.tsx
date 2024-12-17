@@ -31,7 +31,8 @@ export const StackNavigator = ({
       initialRouteName={
         !isAuthenticated && isNull(isAuthenticated)
           ? "Register"
-          : "Transactions"
+          : // : "Transactions"
+            "CreateBudget"
       }
       screenOptions={{
         headerStyle: {

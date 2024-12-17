@@ -9,9 +9,9 @@ export interface RootStackParamList extends ParamListBase {
   Transactions: undefined;
   TransactionDetails: { transactionId: string };
   TransactionsSummary: undefined;
-  CreateTransaction: undefined;
+  CreateTransaction: { parentBudgetId: string | undefined };
   EditTransaction: { transactionId: string };
-  CreateBudget: undefined;
+  CreateBudget: { parentBudgetId: string | undefined };
   BudgetDetails: { budgetId: string };
   EditBudget: { budgetId: string };
 }

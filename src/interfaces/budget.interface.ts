@@ -9,6 +9,7 @@ export interface IBudget {
   startDate: Date;
   endDate: Date;
   category: ICategory;
+  description: string;
   transactions: ITransaction[];
   transactionsSum: number;
 }

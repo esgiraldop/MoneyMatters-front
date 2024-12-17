@@ -1,5 +1,12 @@
-export const formatPrice = (priceNum: number): string => {
-  const priceArray = String(priceNum).split("").reverse();
+export const formatPrice = (priceNum: number | string): string => {
+  let priceString = typeof priceNum === "number" ? String(priceNum) : priceNum;
+  let priceStringDecimal = "";
+  if (priceString.includes(".")) {
+    priceStringDecimal = "." + priceString.split(".")[1];
+    priceString = priceString.split(".")[0];
+  }
+
+  const priceArray = priceString.split("").reverse();
   return (
     "$ " +
     priceArray
@@ -9,6 +16,11 @@ export const formatPrice = (priceNum: number): string => {
           : num;
       })
       .reverse()
-      .join("")
+      .join("") +
+    priceStringDecimal
   );
+};
+
+export const parsePrice = (priceNum: string): number => {
+  return 1;
 };

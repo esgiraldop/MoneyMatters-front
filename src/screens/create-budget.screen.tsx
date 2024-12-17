@@ -7,9 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Formik } from "formik";
-import { useNavigation } from "@react-navigation/native";
-import { IUpdateBudget } from "../interfaces/budget.interface";
+import { Formik, useField } from "formik";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { IBudget, IUpdateBudget } from "../interfaces/budget.interface";
 import { BudgetsService } from "../services/budgets.service";
 import { RootStackParamList } from "../interfaces";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -18,127 +18,164 @@ import { containerStyles } from "../styles/container.styles";
 import { textStyles } from "../styles/text.styles";
 import { buttonStyle } from "../styles/buttons.style";
 import { budgetSchema } from "../schemas/budget.schema";
+// import { CurrencyInput } from "../components/common/currency-input-field.component"; // This thing didn't work
 
 type CreateBudgetScreenProp = NativeStackNavigationProp<
   RootStackParamList,
   "CreateBudget"
 >;
 
+export interface ICreateBudgetForm
+  extends Pick<IBudget, "name" | "description"> {
+  category_id: number;
+  amount: number;
+}
+
 export function CreateBudgetScreen(): React.JSX.Element {
+  const { params } = useRoute<RouteProp<RootStackParamList, "CreateBudget">>();
+
   const navigation = useNavigation<CreateBudgetScreenProp>();
 
-  const onSubmit = async (values: IUpdateBudget) => {
-    await BudgetsService.create(values);
+  const onSubmit = async (values: ICreateBudgetForm) => {
+    console.log("params.parentBudgetId: ", params.parentBudgetId);
+    console.log("values: ", values);
+    await BudgetsService.create({
+      budget_id: !params.parentBudgetId ? null : params.parentBudgetId, // If it is null, then the user is creating a parent budget
+      ...values,
+    });
     navigation.goBack();
   };
 
-  const initialValues = {
+  const initialValues: ICreateBudgetForm = {
     name: "",
-    amount: -1,
-    category: "",
+    amount: 0,
+    category_id: -1,
     description: "",
   };
 
   return (
-    <View
-      style={[
-        containerStyles.containerLightBc,
-        containerStyles.centeredContainerLightBc,
-      ]}
+    <ScrollView
+      style={[containerStyles.containerLightBc]}
+      contentContainerStyle={containerStyles.HorVertCenteredContainer}
     >
-      <Formik
-        initialValues={initialValues}
-        validationSchema={budgetSchema}
-        onSubmit={onSubmit}
+      <View
+        style={[
+          containerStyles.containerLightBc,
+          containerStyles.centeredContainerLightBc,
+        ]}
       >
-        {({
-          isSubmitting,
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          values,
-          errors,
-          isValid,
-        }) => (
-          <View style={containerStyles.centeredContainerLightBc}>
-            <Text style={textStyles.textBody2}>Name</Text>
-            <TextInput
-              style={[textStyles.inputField, containerStyles.inputFieldDark]}
-              onChangeText={handleChange("name")}
-              onBlur={handleBlur("name")}
-              value={values.name}
-              placeholder="Enter name"
-              placeholderTextColor={theme.colors.textSecondary}
-            />
-            {errors.name && (
-              <Text style={textStyles.textError}>{errors.name}</Text>
-            )}
+        <Formik
+          initialValues={initialValues}
+          validationSchema={budgetSchema}
+          onSubmit={onSubmit}
+        >
+          {(formikProps) => {
+            // This thing didn't work
+            // const [field, meta] = useField("amount");
 
-            <Text style={textStyles.textBody2}>Amount</Text>
-            <TextInput
-              style={[textStyles.inputField, containerStyles.inputFieldDark]}
-              onChangeText={handleChange("amount")}
-              onBlur={handleBlur("amount")}
-              value={values.amount}
-              defaultValue={initialValues.amount}
-              placeholder="Enter price amount"
-              placeholderTextColor={theme.colors.textSecondary}
-              keyboardType="numbers-and-punctuation"
-            />
-            {errors.amount && (
-              <Text style={textStyles.textError}>{errors.amount}</Text>
-            )}
-
-            <Text style={textStyles.textBody2}>Category</Text>
-            <TextInput
-              style={[textStyles.inputField, containerStyles.inputFieldDark]}
-              onChangeText={handleChange("category")}
-              onBlur={handleBlur("category")}
-              value={values.category}
-              defaultValue={initialValues.category}
-              placeholder="-- Select category --"
-              placeholderTextColor={theme.colors.textSecondary}
-              keyboardType="email-address"
-            />
-            {errors.category && (
-              <Text style={textStyles.textError}>{errors.category}</Text>
-            )}
-
-            <Text style={textStyles.textBody2}>Description</Text>
-            <TextInput
-              style={[
-                textStyles.inputField,
-                containerStyles.inputFieldDarkThicker,
-              ]}
-              onChangeText={handleChange("description")}
-              onBlur={handleBlur("description")}
-              value={values.description}
-              defaultValue={initialValues.description}
-              placeholder="Describe the budget here"
-              placeholderTextColor={theme.colors.textSecondary}
-              keyboardType="default"
-            />
-            {errors.category && (
-              <Text style={textStyles.textError}>{errors.category}</Text>
-            )}
-
-            <TouchableOpacity
-              style={buttonStyle.acceptButton}
-              onPress={() => handleSubmit()}
-              disabled={!isValid || isSubmitting}
-            >
-              {isSubmitting ? (
-                <ActivityIndicator
-                  size="large"
-                  color={theme.colors.textPrimary}
+            return (
+              <View style={containerStyles.centeredContainerLightBc}>
+                <Text style={textStyles.textBody2}>Name</Text>
+                <TextInput
+                  style={[
+                    textStyles.inputField,
+                    containerStyles.inputFieldDark,
+                  ]}
+                  onChangeText={formikProps.handleChange("name")}
+                  onBlur={formikProps.handleBlur("name")}
+                  value={formikProps.values.name}
+                  placeholder="Enter name"
+                  placeholderTextColor={theme.colors.textSecondary}
                 />
-              ) : (
-                <Text style={textStyles.darkButtonText}>Submit</Text>
-              )}
-            </TouchableOpacity>
-          </View>
-        )}
-      </Formik>
-    </View>
+                {formikProps.touched.name && formikProps.errors.name && (
+                  <Text style={textStyles.textError}>
+                    {formikProps.errors.name}
+                  </Text>
+                )}
+
+                <Text style={textStyles.textBody2}>Amount</Text>
+                <TextInput
+                  style={[
+                    textStyles.inputField,
+                    containerStyles.inputFieldDark,
+                  ]}
+                  onChangeText={formikProps.handleChange("amount")}
+                  onBlur={formikProps.handleBlur("amount")}
+                  value={String(formikProps.values.amount)}
+                  placeholder="Enter amount"
+                  placeholderTextColor={theme.colors.textSecondary}
+                />
+                {formikProps.touched.name && formikProps.errors.name && (
+                  <Text style={textStyles.textError}>
+                    {formikProps.errors.name}
+                  </Text>
+                )}
+                {/* This shit didn't work */}
+                {/* <CurrencyInput field={field} form={formikProps} />
+                {meta.touched && meta.error && (
+                  <Text style={textStyles.textError}>{meta.error}</Text>
+                )} */}
+
+                <Text style={textStyles.textBody2}>Category</Text>
+                <TextInput
+                  style={[
+                    textStyles.inputField,
+                    containerStyles.inputFieldDark,
+                  ]}
+                  onChangeText={formikProps.handleChange("category_id")}
+                  onBlur={formikProps.handleBlur("category_id")}
+                  value={String(formikProps.values.category_id)}
+                  defaultValue={String(initialValues.category_id)}
+                  placeholder="-- Select category --"
+                  placeholderTextColor={theme.colors.textSecondary}
+                />
+                {formikProps.touched.amount &&
+                  formikProps.errors.category_id && (
+                    <Text style={textStyles.textError}>
+                      {formikProps.errors.category_id}
+                    </Text>
+                  )}
+
+                <Text style={textStyles.textBody2}>Description</Text>
+                <TextInput
+                  style={[
+                    textStyles.inputField,
+                    containerStyles.inputFieldDarkThicker,
+                  ]}
+                  onChangeText={formikProps.handleChange("description")}
+                  onBlur={formikProps.handleBlur("description")}
+                  value={formikProps.values.description}
+                  defaultValue={initialValues.description}
+                  placeholder="Describe the budget here"
+                  placeholderTextColor={theme.colors.textSecondary}
+                  keyboardType="default"
+                />
+                {formikProps.touched.amount &&
+                  formikProps.errors.description && (
+                    <Text style={textStyles.textError}>
+                      {formikProps.errors.description}
+                    </Text>
+                  )}
+
+                <TouchableOpacity
+                  style={buttonStyle.acceptButton}
+                  onPress={() => formikProps.handleSubmit()}
+                  disabled={!formikProps.isValid || formikProps.isSubmitting}
+                >
+                  {formikProps.isSubmitting ? (
+                    <ActivityIndicator
+                      size="large"
+                      color={theme.colors.textPrimary}
+                    />
+                  ) : (
+                    <Text style={textStyles.darkButtonText}>Submit</Text>
+                  )}
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        </Formik>
+      </View>
+    </ScrollView>
   );
 }

@@ -39,7 +39,15 @@ export const containerStyles = StyleSheet.create({
     padding: theme.spacing.medium,
     backgroundColor: theme.colors.backgroundLight,
   },
-
+  VerticallyCenteredContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  HorVertCenteredContainer: {
+    flexGrow: 1, // Ensures content fills the available space
+    justifyContent: "center", // Center vertically
+    alignItems: "center", // Center horizontally
+  },
   // Layout Containers
   rowContainer: {
     flexDirection: "row",
@@ -59,11 +67,6 @@ export const containerStyles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     alignItems: "center",
     height: 60,
-  },
-  mapContainer: {
-    width: "100%",
-    height: "33%",
-    marginBottom: theme.spacing.small,
   },
   card: {
     backgroundColor: theme.colors.backgroundLight,

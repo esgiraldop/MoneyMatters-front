@@ -23,7 +23,8 @@ function App(): React.JSX.Element {
     // Set a timer to transition to the main app
     const timer = setTimeout(() => {
       setShowSplash(false);
-    }, 4000);
+      // }, 4000);
+    }, 1);
     return () => clearTimeout(timer);
   }, []);
 
